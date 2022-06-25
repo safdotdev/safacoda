@@ -10,7 +10,7 @@ echo "from ${standalone_download_path}"
 curl -LO ${standalone_download_path}
 tar xzf ${filename}
 rm ${filename}
-export PATH="${PATH}:/root/example-consumer-java-junit/pact/bin/"
+export PATH="${PATH}:/root/pact/bin/"
 
 echo "=> testing Pact CLI Tools"
 pact-broker --help publish

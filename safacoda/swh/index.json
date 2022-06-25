@@ -18,7 +18,7 @@
     },
     "assets": {
       "host01": [
-        { "file": "pact_bdc_v1.0.0.json", "target": "/root/pacts" },
+        { "file": "./assets/pact_bdc_v1.0.0.json", "target": "/root/pacts" },
         { "file": "pact_bdc_v1.0.1.json", "target": "/root/pacts" },
         { "file": "pact_bdc_v1.0.2.json", "target": "/root/pacts" },
         { "file": "pact_bdc_v1.0.3.json", "target": "/root/pacts" },
