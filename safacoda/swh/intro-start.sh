@@ -17,5 +17,4 @@ curl -LOs https://gist.githubusercontent.com/YOU54F/f8a749aac8d5e62e86d4892e8905
 echo "Installing @pactflow/swagger-mock-validator globally"
 npm -g install @pactflow/swagger-mock-validator
 apt-get update
-apt --yes install ruby
-apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
+apt --yes install ruby jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
