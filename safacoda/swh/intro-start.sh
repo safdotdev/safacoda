@@ -14,5 +14,5 @@ rm ${filename}
 export PATH="${PATH}:/root/pact/bin/"
 echo "Installing other CLI tools"
 npx -y safbot
-npx -y swagger-mock-validator
+npx -y @pactflow/swagger-mock-validator
 apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
