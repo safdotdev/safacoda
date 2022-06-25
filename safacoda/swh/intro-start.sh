@@ -14,5 +14,5 @@ rm ${filename}
 export PATH="${PATH}:/root/pact/bin/"
 echo "Installing other CLI tools"
 curl -LOs https://gist.githubusercontent.com/YOU54F/f8a749aac8d5e62e86d4892e89051e6d/raw/7ba9fea1d8304b38779b20fdda86cf9de1ba0540/pact_helper.sh && chmod +x ./pact_helper.sh && mv ./pact_helper.sh /root/pact/bin/
-npm -g @pactflow/swagger-mock-validator
+npm -g install @pactflow/swagger-mock-validator
 apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"

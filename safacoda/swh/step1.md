@@ -2,30 +2,30 @@
 
 1. Try `pactflow`{{exec}}
 
-- `./pact_helper.sh doctor`{{execute}}
-- `./pact_helper.sh install-pact-cli docker`{{execute}}
-- `./pact_helper.sh uninstall-pact-cli docker`{{execute}}
-- `./pact_helper.sh install-pact-cli ruby`{{execute}}
-- `./pact_helper.sh uninstall-pact-cli ruby`{{execute}}
-- `./pact_helper.sh install-pact-cli standalone`{{execute}}
-- `./pact_helper.sh uninstall-pact-cli standalone`{{execute}}
-- `./pact_helper.sh pactflow-login`{{execute}}
-- `./pact_helper.sh pactflow-generate-project`{{execute}}
-- `./pact_helper.sh pactflow-generate-project javascript-node-provider-mocha`{{execute}}
-- `./pact_helper.sh pactflow-download-demo cdct`{{execute}}
-- `./pact_helper.sh pactflow-download-demo bdct`{{execute}}
-- `./pact_helper.sh pactflow-download-demo workshops`{{execute}}
-- `./pact_helper.sh pactflow-download-demo bdct example-bi-directional-consumer-msw`{{execute}}
-- `./pact_helper.sh pactflow-download-demo bdct all`{{execute}}
-- `./pact_helper.sh pactflow-download-demo workshops all`{{execute}}
-- `./pact_helper.sh pactflow-download-demo cdct all`{{execute}}
-- `./pact_helper.sh publish-pact ./consumer_contracts/pact_bdc_v1.0.3.json v1.0.3`{{execute}}
-- `./pact_helper.sh publish-provider-contract ./provider_contracts/products_v1.0.yml v1.0.5`{{execute}}
-- `./pact_helper.sh publish-provider-contract ./provider_contracts/products_v1.0.yml v1.0.5`{{execute}}
-- `./pact_helper.sh can-i-deploy v1.0.5`{{execute}}
-- `./pact_helper.sh can-i-deploy v1.0.3 pactflow-example-consumer`{{execute}}
-- `./pact_helper.sh record_deployment v1.0.3 pactflow-example-consumer`{{execute}}
-- `./pact_helper.sh record_deployment v1.0.5`{{execute}}
+- `pact_helper.sh doctor`{{execute}}
+- `pact_helper.sh install-pact-cli docker`{{execute}}
+- `pact_helper.sh uninstall-pact-cli docker`{{execute}}
+- `pact_helper.sh install-pact-cli ruby`{{execute}}
+- `pact_helper.sh uninstall-pact-cli ruby`{{execute}}
+- `pact_helper.sh install-pact-cli standalone`{{execute}}
+- `pact_helper.sh uninstall-pact-cli standalone`{{execute}}
+- `pact_helper.sh pactflow-login`{{execute}}
+- `pact_helper.sh pactflow-generate-project`{{execute}}
+- `pact_helper.sh pactflow-generate-project javascript-node-provider-mocha`{{execute}}
+- `pact_helper.sh pactflow-download-demo cdct`{{execute}}
+- `pact_helper.sh pactflow-download-demo bdct`{{execute}}
+- `pact_helper.sh pactflow-download-demo workshops`{{execute}}
+- `pact_helper.sh pactflow-download-demo bdct example-bi-directional-consumer-msw`{{execute}}
+- `pact_helper.sh pactflow-download-demo bdct all`{{execute}}
+- `pact_helper.sh pactflow-download-demo workshops all`{{execute}}
+- `pact_helper.sh pactflow-download-demo cdct all`{{execute}}
+- `pact_helper.sh publish-pact ./consumer_contracts/pact_bdc_v1.0.3.json v1.0.3`{{execute}}
+- `pact_helper.sh publish-provider-contract ./provider_contracts/products_v1.0.yml v1.0.5`{{execute}}
+- `pact_helper.sh publish-provider-contract ./provider_contracts/products_v1.0.yml v1.0.5`{{execute}}
+- `pact_helper.sh can-i-deploy v1.0.5`{{execute}}
+- `pact_helper.sh can-i-deploy v1.0.3 pactflow-example-consumer`{{execute}}
+- `pact_helper.sh record_deployment v1.0.3 pactflow-example-consumer`{{execute}}
+- `pact_helper.sh record_deployment v1.0.5`{{execute}}
 
 <!-- ## Overview of OAS Files included
 
