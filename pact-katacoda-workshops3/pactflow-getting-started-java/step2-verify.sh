@@ -1,0 +1,1 @@
+[ -d /root/example-provider-springboot -a -d /root/example-consumer-java-junit ] && echo "done"
