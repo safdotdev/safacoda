@@ -9,4 +9,7 @@
    1. `export SWAGGERHUB_ORG=<enter your org here>`
    2. Click me in Tab1 - `export SWAGGERHUB_ORG=`{{execute}}
 5. Click me in Tab1 - `npx swaggerhub-cli api:create $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 --visibility=public -f oas/products_v1.0.0.yml`{{execute}}
-6. Click me in Tab1 - `swaggerhub integration:create $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 -f integrations/api_auto_mocking.json`{{execute}}
+6. Click me in Tab1 - `npx swaggerhub-cli integration:create $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 -f integrations/api_auto_mocking.json`{{execute}}
+7. Click me in Tab1 - `npx swaggerhub-cli integration:list $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 | tail -n 1 | cut -f1,2 -d' ' \ | xargs echo $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 | sed -e "s/ /\//g" | xargs npx swaggerhub-cli integration:execute`{{execute}}
+8. Click me in Tab1 - `$mocked_endpoint=$(npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.0 --json | jq -r '.servers[0].url')`{{execute}}
+9. Click me in Tab1 - `echo $mocked_endpoint | xargs -I{} $(npm bin)/dredd --reporter markdown --output ./output/report.md oas/products_v1.0.0.yml {}`{{execute}}
