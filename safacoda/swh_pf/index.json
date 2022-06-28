@@ -1,0 +1,42 @@
+{
+  "title": "Pactflow - Getting started with NodeJS",
+  "description": "A Pactflow NodeJS tutorial to teach the basics of Pact",
+  "difficulty": "Beginner",
+  "time": "15",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md",
+        "verify": "step1-verify.sh",
+        "foreground": "step1-shell.sh"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
+    },
+    "assets": {
+      "host01": [
+        { "file": "./assets/pact_bdc_v1.0.0.json", "target": "/root/pacts" },
+        { "file": "pact_bdc_v1.0.1.json", "target": "/root/pacts" },
+        { "file": "pact_bdc_v1.0.2.json", "target": "/root/pacts" },
+        { "file": "pact_bdc_v1.0.3.json", "target": "/root/pacts" },
+        { "file": "products_v1.0.0.yml", "target": "/root/oas" },
+        { "file": "products_v1.0.1.yml", "target": "/root/oas" },
+        { "file": "products_v1.0.2.yml", "target": "/root/oas" },
+        { "file": "products_v1.0.3.yml", "target": "/root/oas" },
+        { "file": "products_v1.0.4.yml", "target": "/root/oas" },
+        { "file": "products_v1.0.5.yml", "target": "/root/oas" }
+      ]
+    },
+    "files": []
+  },
+  "environment": {
+    "hidefinish": true,
+    "uilayout": "vscode-terminal-split"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
