@@ -12,5 +12,5 @@ curl -LO ${standalone_download_path}
 tar xzf ${filename}
 rm ${filename}
 export PATH="${PATH}:/root/pact/bin/"
-npx swaggerhub-cli
+npx -y swaggerhub-cli
 apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
