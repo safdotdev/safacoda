@@ -26,7 +26,7 @@ paths:
         "200":
           description: successful operation
           content:
-            "application/json; charset=utf-8":
+            "application/json;charset=utf-8":
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/Product'
@@ -44,7 +44,7 @@ paths:
         "200":
           description: successful operation
           content:
-            "application/json; charset=utf-8":
+            "application/json;charset=utf-8":
               schema:
                 type: "array"
                 items:
@@ -78,7 +78,7 @@ paths:
         "200":
           description: successful operation
           content:
-            "application/json; charset=utf-8":
+            "application/json;charset=utf-8":
               schema:
                 $ref: '#/components/schemas/Product'
               examples:
