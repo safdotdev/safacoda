@@ -3,7 +3,7 @@
     "name": "pactflow-example-consumer"
   },
   "provider": {
-    "name": "swh_pf_demo_provider"
+    "name": "swh-pf-demo-provider"
   },
   "interactions": [
     {
