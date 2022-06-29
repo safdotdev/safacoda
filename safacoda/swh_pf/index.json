@@ -27,7 +27,8 @@
         { "file": "products_v1.0.2.yml", "target": "/root/oas" },
         { "file": "products_v1.0.3.yml", "target": "/root/oas" },
         { "file": "products_v1.0.4.yml", "target": "/root/oas" },
-        { "file": "products_v1.0.5.yml", "target": "/root/oas" }
+        { "file": "products_v1.0.5.yml", "target": "/root/oas" },
+        { "file": "dredd.yml", "target": "/root" }
       ]
     },
     "files": []

@@ -1,0 +1,6 @@
+reporter: [markdown]
+output: [./output/report.md]
+path: []
+logLevel: debug
+blueprint: ./oas/products.yml
+endpoint: ''
