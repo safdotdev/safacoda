@@ -18,5 +18,6 @@ npx -y swaggerhub-cli
 echo "=> get swaggerhub automock file"
 API_AUTOMOCKING_TEMPLATE_URL=https://raw.githubusercontent.com/SmartBear/swaggerhub-cli/master/examples/integrations/api_auto_mocking.json
 API_AUTOMOCKING_TEMPLATE_FILE=integrations/api_auto_mocking.json
+mkdir integrations
 curl ${API_AUTOMOCKING_TEMPLATE_URL} -o ${API_AUTOMOCKING_TEMPLATE_FILE}
 apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
