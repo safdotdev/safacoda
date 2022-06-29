@@ -14,5 +14,7 @@
    1. `curl -s $mocked_endpoint/products | jq .`{{execute}}
    2. `curl -s $mocked_endpoint/product/42 | jq .`{{execute}}
 9. `endpoint=$mocked_endpoint yq -i '.endpoint = strenv(endpoint)' dredd.yml`{{execute}}
-10. `npx -y dredd $mocked_endpoint`{{execute}}
-11. `npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
+10. `spec=oas/products_v1.0.0.yml yq -i '.blueprint = strenv(spec)' dredd.yml`{{execute}}
+11. `npx -y dredd $mocked_endpoint`{{execute}}
+12. `npx -y dredd $mocked_endpoint| pactflow publish-provider-contract \ oas/products_v1.0.0.yml \ --provider swh-pf-demo-provider \ --provider-app-version 1234 \ --branch testbranch \ --content-type 'application/yaml' \ --verification-exit-code=$? \ --verification-results output/report.md \ --verification-results-content-type 'plain/text' \ --verifier 'dredd';`{{execute}}
+13. `npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
