@@ -17,15 +17,15 @@
 10. `spec=oas/products_v1.0.0.yml yq -i '.blueprint = strenv(spec)' dredd.yml`{{execute}}
 11. `npx -y dredd $mocked_endpoint`{{execute}}
 12. `npx -y dredd $mocked_endpoint| pactflow publish-provider-contract oas/products_v1.0.0.yml --provider swh_pf_demo_provider --provider-app-version 1.0.0 --branch testbranch --content-type 'application/yaml' --verification-exit-code=$? --verification-results output/report.md --verification-results-content-type 'plain/text' --verifier 'dredd';`{{execute}}
-13. `pact-broker can-i-deploy --pacticipant swh_pf_demo_provider --version 1.0.0 --to-environment production`
-14. `pact-broker record-deployment --pacticipant swh_pf_demo_provider --version 1.0.0 --environment production`
-15. `pact-broker publish pacts/pact_bdc_v1.0.0.json --consumer-app-version 1.0.0 --branch testbranch0`
-16. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.0 --to-environment production`
-17. `pact-broker record-deployment --pacticipant pactflow-example-consumer --version 1.0.0 --environment production`
-18. `pact-broker publish pacts/pact_bdc_v1.0.1.json --consumer-app-version 1.0.1 --branch testbranch1`
-19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment production`
-20. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.2 --branch testbranch2`
-21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment production`
-22. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.3 --branch testbranch3`
-23. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment production`
+13. `pact-broker can-i-deploy --pacticipant swh_pf_demo_provider --version 1.0.0 --to-environment production`{{execute}}
+14. `pact-broker record-deployment --pacticipant swh_pf_demo_provider --version 1.0.0 --environment production`{{execute}}
+15. `pact-broker publish pacts/pact_bdc_v1.0.0.json --consumer-app-version 1.0.0 --branch testbranch0`{{execute}}
+16. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.0 --to-environment production`{{execute}}
+17. `pact-broker record-deployment --pacticipant pactflow-example-consumer --version 1.0.0 --environment production`{{execute}}
+18. `pact-broker publish pacts/pact_bdc_v1.0.1.json --consumer-app-version 1.0.1 --branch testbranch1`{{execute}}
+19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment production`{{execute}}
+20. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.2 --branch testbranch2`{{execute}}
+21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment production`{{execute}}
+22. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.3 --branch testbranch3`{{execute}}
+23. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment production`{{execute}}
 24. `npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
