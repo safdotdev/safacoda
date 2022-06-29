@@ -26,6 +26,6 @@
 19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment production`{{execute}}
 20. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.2 --branch testbranch2`{{execute}}
 21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment production`{{execute}}
-22. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.3 --branch testbranch3`{{execute}}
+22. `pact-broker publish pacts/pact_bdc_v1.0.3.json --consumer-app-version 1.0.3 --branch testbranch3`{{execute}}
 23. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment production`{{execute}}
 24. `npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
