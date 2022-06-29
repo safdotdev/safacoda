@@ -14,5 +14,5 @@
    1. `curl -s $mocked_endpoint/products | jq .`{{execute}}
    2. `curl -s $mocked_endpoint/product/42 | jq .`{{execute}}
 9. `endpoint=$mocked_endpoint yq -i '.endpoint = strenv(endpoint)' dredd.yml`{{execute}}
-10. `$npx -y dredd $mocked_endpoint`{{execute}}
-11. `$npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
+10. `npx -y dredd $mocked_endpoint`{{execute}}
+11. `npx swaggerhub-cli api:get $SWAGGERHUB_ORG/pactflow-demo/v1.0.1 > oas/products_v1.0.1.yml`{{execute}}
