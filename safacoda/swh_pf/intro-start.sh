@@ -20,5 +20,6 @@ API_AUTOMOCKING_TEMPLATE_URL=https://raw.githubusercontent.com/SmartBear/swagger
 API_AUTOMOCKING_TEMPLATE_FILE=integrations/api_auto_mocking.json
 mkdir integrations
 curl ${API_AUTOMOCKING_TEMPLATE_URL} -o ${API_AUTOMOCKING_TEMPLATE_FILE}
-snap install yq
-apt --yes install jq && clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
+snap install yq jq
+source ~/bashrc
+clear && echo "Welcome. All the dependencies are installed, and you should be good to go!"
