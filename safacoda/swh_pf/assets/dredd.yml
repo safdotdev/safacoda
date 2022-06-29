@@ -3,4 +3,4 @@ output: [./output/report.md]
 path: []
 logLevel: debug
 blueprint: ./oas/products.yml
-endpoint: ''
+endpoint: 'foo'
