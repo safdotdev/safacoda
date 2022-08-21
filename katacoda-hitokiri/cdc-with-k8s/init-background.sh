@@ -17,6 +17,19 @@ docker run whalebrew/pygmentize:2.6.1 &
 echo 'function ccat() { docker run -it -v "$(pwd)":/workdir -w /workdir whalebrew/pygmentize:2.6.1 $@; }' >>~/.bashrc
 source ~/.bashrc
 
+# Setup helm
+
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg \
+    sudo apt-get install apt-transport-https --yes \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" >/dev/null |
+    sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
+        sudo apt-get update \
+        sudo apt-get install helm
+
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.bashrc
+nvm install 16
+
 # Setup dashboard on port 30000
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm install dash kubernetes-dashboard/kubernetes-dashboard \

@@ -8,7 +8,7 @@ There are many options for standing up a container registry. We prefer a pure Ku
 
 Add the chart repository for the Helm chart to be installed.
 
-`helm repo add stable https://kubernetes-charts.storage.googleapis.com`{{execute}}
+`helm repo add stable https://charts.helm.sh/stable`{{execute}}
 
 Install the chart for a private container registry.
 
@@ -58,7 +58,7 @@ This means when you push to localhost:5000 your container images will be routed 
 
 But what happens in the Pod specification when you want to pull the image using the tag localhost:5000? We can add a proxy that runs as a DaemonSet that will resolve localhost:5000 to the registry whenever a Pod requests a container from localhost:5000. Install the proxy.
 
-`helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator`{{execute}}
+`helm repo add incubator https://charts.helm.sh/incubator`{{execute}}
 
 With the added repo, install the proxy daemons.
 
