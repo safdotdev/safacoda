@@ -31,7 +31,7 @@ Once complete, new Pact JSON files are in the pacts directory. Inspect one of th
 
 Define access to the Pact Broker.
 
-`export PACT_BROKER_URL=https://[[HOST_SUBDOMAIN]]-30111-[[KATACODA_HOST]].environments.katacoda.com/`{{execute}}
+`export PACT_BROKER_URL={{TRAFFIC_HOST1_30111}}`{{execute}}
 
 `export BROKER_USERNAME=pactbroker`{{execute}}
 
@@ -41,4 +41,4 @@ Publish the pact to the broker.
 
 `npm run publish:pact`{{execute}}
 
-Verify the pact has been published to the [Pact Broker](https://[[HOST_SUBDOMAIN]]-30111-[[KATACODA_HOST]].environments.katacoda.com/).
+Verify the pact has been published to the [Pact Broker]({{TRAFFIC_HOST1_30111}}).

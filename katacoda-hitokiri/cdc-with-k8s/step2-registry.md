@@ -28,7 +28,7 @@ The registry is now available as a service. It can be listed.
 
 Assign an environment variable to the common registry location.
 
-`export REGISTRY=[[HOST_SUBDOMAIN]]-31500-[[KATACODA_HOST]].environments.katacoda.com`{{execute}}
+`export REGISTRY={{TRAFFIC_HOST1_31500}}`{{execute}}
 
 It will be a few moments before the registry deployment reports it's _Available_.
 
