@@ -24,7 +24,8 @@ Produce the two Pact files.
 
 Once complete, new Pact JSON files are in the pacts directory. Inspect one of the contract files.
 
-`ccat pacts/consumer_a-aggregator.json | jq -C .`{{execute}}
+`cat pacts/consumer_a-aggregator.json | jq -C .`{{execute}}
+`cat pacts/consumer_b-aggregator.json | jq -C .`{{execute}}
 
 ## Publish Pacts to Pact Broker
 
