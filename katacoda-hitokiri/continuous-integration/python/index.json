@@ -1,0 +1,110 @@
+{
+  "pathwayTitle": "Python Pipeline to Kubernetes",
+  "title": "Python Pipeline to Kubernetes.",
+  "description": "Build and deploy a Python microservice with Kaniko and Tekton Pipelines.",
+  "difficulty":	"Introduction",
+  "time":	"30 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Your Kubernetes Cluster",
+        "text": "step1-k8s.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Clone Example Python Microservice App",
+        "text": "step2-git-clone.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Bloated Python Container",
+        "text": "step3-bloated-container.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Distilled Python Container",
+        "text": "step4-distilled-container.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Install Local Container Registry",
+        "text": "step5-registry.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Deploy Tekton Controller",
+        "text": "step6-tekton-controller.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Deploy Tekton Dashboard",
+        "text": "step7-tekton-dashboard.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Install Tekton CLI tool (tkn)",
+        "text": "step8-tekton-cli.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Declare Pipeline Resources",
+        "text": "step9-resources.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Declare Pipeline Tasks",
+        "text": "step10-tasks.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Declare Pipeline",
+        "text": "step11-pipeline.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Declare Service Account",
+        "text": "step12-service-account.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Declare Runner for Pipeline",
+        "text": "step13-pipeline-run.md",
+        "code": "clear.sh"
+      },
+      {
+        "title": "Access Application",
+        "text": "step14-application.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "courseData": "init-background.sh",
+      "code": "init-foreground.sh",
+      "credits": "[Jonathan Johnson](http://www.dijure.com)"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "*.yaml", "target": "~/"},
+        {"file": "token.sh", "target": "/usr/local/bin", "chmod": "+x"}
+      ]
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "uilayout": "terminal",
+    "uimessage1": "\u001b[32mYour interactive Bash terminal.\u001b[m\r\n",
+    "icon": "fa-kubernetes",
+    "dashboards": [
+      {"name": "Kubernetes Dashboard", "port": 30000},
+      {"name": "Registry", "port": 31000},
+      {"name": "Tekton Dashboard", "port": 32500},
+      {"name": "Application", "port": 32000}
+    ]
+    },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18"
+  }
+}

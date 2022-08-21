@@ -1,0 +1,13 @@
+{
+  "title": "Kubernetes Workshop",
+  "description": "Learn Kubernetes with your hands and mind.",
+  "courses": [
+    {
+      "title": "SonarQube",
+      "description": "Code Analysis with SonarQube on Kubernetes.",
+      "pathway_id": "javajon",
+      "id": "continuous-integration/sonarqube",
+      "course_id": "sonarqube"
+    }    
+  ]
+}

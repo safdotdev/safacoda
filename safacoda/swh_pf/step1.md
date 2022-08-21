@@ -184,12 +184,6 @@ Create AutoMock Integration of OAS
    1. `curl -s $mocked_endpoint/products | jq .`{{execute}}
    2. `curl -s $mocked_endpoint/product/42 | jq .`{{execute}}
 
-## Store OAS in SCM (Git)
-
-5. Sign up to GitHub
-6. Create Repository
-7. Connect GitHub/SCM integration of OAS
-
 ## Create tests for AutoMock
 
 Create test for auto mock with any API testing tool
@@ -203,12 +197,25 @@ Create test for auto mock with any API testing tool
 
 ## Upload results to Pactflow
 
-8. Sign up to Pactflow and publish results to pactflow (devmock) env
-   1. `npx -y dredd $mocked_endpoint| pactflow publish-provider-contract oas/products_v1.0.0.yml --provider swh-pf-demo-provider --provider-app-version 1.0.0 --branch testbranch --content-type 'application/yaml' --verification-exit-code=$? --verification-results output/report.md --verification-results-content-type 'plain/text' --verifier 'dredd';`{{execute}}
-9. Check if you can deploy the mock provider
-   1. `pact-broker can-i-deploy --pacticipant swh-pf-demo-provider --version 1.0.0 --to-environment devmock`{{execute}}
-10. Deploy the mock provider and record it as deployed to the devmock environment
+8. Sign up to Pactflow
+9. Create a devmock environment
+10. Go to the API tokens page
+11. Click to copy `PACT_BROKER_BASE_URL=` and paste into tab 1, followed by `COPY PACTFLOW BASE URL` button, then paste that into tab 1 and press enter
+12. Click to copy `PACT_BROKER_TOKEN=` and paste into tab 1, followed by the read/write `COPY` button, then paste that into tab 1 and press enter
+13. publish results to pactflow (devmock) env
+14. `npx -y dredd $mocked_endpoint| pactflow publish-provider-contract oas/products_v1.0.0.yml --provider swh-pf-demo-provider --provider-app-version 1.0.0 --branch testbranch --content-type 'application/yaml' --verification-exit-code=$? --verification-results output/report.md --verification-results-content-type 'plain/text' --verifier 'dredd';`{{execute}}
+15. Check if you can deploy the mock provider
+16. `pact-broker can-i-deploy --pacticipant swh-pf-demo-provider --version 1.0.0 --to-environment devmock`{{execute}}
+17. Deploy the mock provider and record it as deployed to the devmock environment
     1. `pact-broker record-deployment --pacticipant swh-pf-demo-provider --version 1.0.0 --environment devmock`{{execute}}
+
+## Store OAS in SCM (Git)
+
+5. Sign up to GitHub
+6. Create Repository
+7. Connect GitHub/SCM integration of OAS
+
+https://support.smartbear.com/swaggerhub/docs/integrations/github-sync.html
 
 ## Make changes to OAS in SWH
 
@@ -218,6 +225,12 @@ Create test for auto mock with any API testing tool
 ## Create Provider Stub from SWH/Pactflow
 
 12. Create provider stub from SWH
+
+servers:
+
+- url: http://localhost:8080
+  description: localhost
+
 13. Test provider implementation and upload to Pactflow
     1. Test with any api tool
     2. Test with ReadyAPI
@@ -232,6 +245,33 @@ Create consumer stub and Test consumer implementation with Pact and upload to Pa
 1.  Publish consumer pacts
     1. `pact-broker publish pacts/pact_bdc_v1.0.0.json --consumer-app-version 1.0.0 --branch testbranch0`{{execute}}
 2.  Check if consumer if safe to deploy
-    1. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.0 --to-environment production`{{execute}}
+    1. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.0 --to-environment devmock`{{execute}}
 3.  Deploy consumer and record consumer existence in devmock environment
-    1. `pact-broker record-deployment --pacticipant pactflow-example-consumer --version 1.0.0 --environment production`{{execute}}
+    1. `pact-broker record-deployment --pacticipant pactflow-example-consumer --version 1.0.0 --environment devmock`{{execute}}
+
+## Making a consumer change 1
+
+Consumer requires additional field from provider which provider already provides
+
+Safe
+
+18. `pact-broker publish pacts/pact_bdc_v1.0.1.json --consumer-app-version 1.0.1 --branch testbranch1`{{execute}}
+19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment production`{{execute}}
+
+## Making a consumer change 2
+
+Consumer requires additional field from provider which provider does provide
+
+Unsafe
+
+20. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.2 --branch testbranch2`{{execute}}
+21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment production`{{execute}}
+
+## Making a consumer change 3
+
+Consumer changes to expect via a new endpoint
+
+Unsafe
+
+1.  `pact-broker publish pacts/pact_bdc_v1.0.3.json --consumer-app-version 1.0.3 --branch testbranch3`{{execute}}
+2.  `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment production`{{execute}}
