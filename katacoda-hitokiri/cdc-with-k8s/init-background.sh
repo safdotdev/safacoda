@@ -28,7 +28,6 @@ curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share
 
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.bashrc
-nvm install 16
 
 # Setup dashboard on port 30000
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
@@ -45,5 +44,5 @@ helm install dash kubernetes-dashboard/kubernetes-dashboard \
 # by Kubernetes, Katacoda will respond with the IP of the master. This is
 # how Istio and other LoadBalancer based services can be deployed.
 kubectl delete -f /opt/katacoda-cloud-provider.yaml
-
+nvm install 16
 echo "done" >>/opt/.backgroundfinished
