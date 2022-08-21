@@ -19,15 +19,7 @@ source ~/.bashrc
 
 # Setup helm
 
-curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg \
-    sudo apt-get install apt-transport-https --yes \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" >/dev/null |
-    sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
-        sudo apt-get update -y \
-        sudo apt-get install -y helm
-
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-source ~/.bashrc
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 # Setup dashboard on port 30000
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
@@ -44,5 +36,10 @@ helm install dash kubernetes-dashboard/kubernetes-dashboard \
 # by Kubernetes, Katacoda will respond with the IP of the master. This is
 # how Istio and other LoadBalancer based services can be deployed.
 kubectl delete -f /opt/katacoda-cloud-provider.yaml
+
+# Setup nvm
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.bashrc
 nvm install 16
+
 echo "done" >>/opt/.backgroundfinished
