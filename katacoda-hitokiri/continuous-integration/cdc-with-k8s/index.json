@@ -2,8 +2,8 @@
   "pathwayTitle": "Consumer-driven Contracts with Kubernetes",
   "title": "Consumer-driven Contracts with Kubernetes",
   "description": "Learn how to use the Pact Foundation's framework for CDC testing.",
-  "difficulty":	"Intermediate",
-  "time":	"30 minutes",
+  "difficulty": "Intermediate",
+  "time": "30 minutes",
   "lifetime": "180",
   "details": {
     "steps": [
@@ -84,7 +84,7 @@
     },
     "assets": {
       "host01": [
-        {"file": "token.sh", "target": "/usr/local/bin", "chmod": "+x"}
+        { "file": "token.sh", "target": "/usr/local/bin", "chmod": "+x" }
       ]
     }
   },
@@ -94,12 +94,12 @@
     "uimessage1": "\u001b[32mYour interactive Bash terminal.\u001b[m\r\n",
     "icon": "fa-kubernetes",
     "dashboards": [
-      {"name": "Kubernetes Dashboard", "port": 30000},
-      {"name": "Pact Broker", "port": 30111},
-      {"name": "H2", "port": 30100},
-      {"name": "Population", "port": 30101},
-      {"name": "COVID-19", "port": 30102},
-      {"name": "Aggregator", "port": 30103}
+      { "name": "Kubernetes Dashboard", "port": 30000 },
+      { "name": "Pact Broker", "port": 30111 },
+      { "name": "H2", "port": 30100 },
+      { "name": "Population", "port": 30101 },
+      { "name": "COVID-19", "port": 30102 },
+      { "name": "Aggregator", "port": 30103 }
     ]
   },
   "backend": {
