@@ -20,6 +20,6 @@ Inspect the deployment, it may take a minute or two for the pact-broker Pod to r
 `kubectl get pods,deployments,services`{{execute}}
 
 <img src="./assets/pact-broker-example.png" width="400">
-In a few moments, the new web interface will be available. Open the [Pact Broker web interface]({{TRAFFIC_HOST1_30111}}) and observe it's contents.
+In a few moments, the new web interface will be available. Open the [Pact Broker]({{TRAFFIC_HOST1_30111}}) and observe it's contents.
 
 The broker is essentially empty. It does have an _Example App_, but this is just a sample. In a few moments, you will run a test on a consumer to generate and submit a new contact to this registry.

@@ -37,8 +37,7 @@ It will take a moment for the broker Pods to be running. Check their status.
 
 <img src="./assets/h2-connect.png" width="400">
 
-In a few moments, the Deployment will be available at a NodePort. Explore the [H2 database](
-https://[[HOST_SUBDOMAIN]]-30100-[[KATACODA_HOST]].environments.katacoda.com/) and verify the population data is present. The H2 database serves a convenient web interface for you to interact with the database. When you are presented with the connection information just put in `jdbc:h2:/h2-data/world`{{copy}} for the JDBC driver URL and leave the username and password blank.
+In a few moments, the Deployment will be available at a NodePort. Explore the [H2 database]({{TRAFFIC_HOST1_30100}}/) and verify the population data is present. The H2 database serves a convenient web interface for you to interact with the database. When you are presented with the connection information just put in `jdbc:h2:/h2-data/world`{{copy}} for the JDBC driver URL and leave the username and password blank.
 
 Use the Connect button to enter the SQL explorer. Enter `select * from country`{{copy}} to verify the database has been seeded.
 

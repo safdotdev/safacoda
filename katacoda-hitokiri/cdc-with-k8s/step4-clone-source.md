@@ -6,7 +6,7 @@ You will build and deploy all the source code for this scenario. To save time an
 
 All of the code is in a single git repository. Clone the repo into this scenario.
 
-`git clone https://github.com/javajon/cdc-with-k8s`{{execute}}
+`git clone https://github.com/you54f/cdc-with-k8s`{{execute}}
 
 `cd ~/cdc-with-k8s`{{execute}}
 

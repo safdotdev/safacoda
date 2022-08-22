@@ -33,10 +33,10 @@ The microservice will be running in a moment, so check it's status.
 
 In a few moments, the Deployment will be available at a NodePort. Explore the data with these rest calls.
 
-`curl https://[[HOST_SUBDOMAIN]]-30101-[[KATACODA_HOST]].environments.katacoda.com/ping; echo`{{execute}}
+`curl {{TRAFFIC_HOST1_30101}}/ping; echo`{{execute}}
 
-`curl https://[[HOST_SUBDOMAIN]]-30101-[[KATACODA_HOST]].environments.katacoda.com/countries | jq .`{{execute}}
+`curl {{TRAFFIC_HOST1_30101}}/countries | jq .`{{execute}}
 
-`curl https://[[HOST_SUBDOMAIN]]-30101-[[KATACODA_HOST]].environments.katacoda.com/cities | jq .`{{execute}}
+`curl {{TRAFFIC_HOST1_30101}}/cities | jq .`{{execute}}
 
-You can also try it [in your browser](https://[[HOST_SUBDOMAIN]]-30101-[[KATACODA_HOST]].environments.katacoda.com/countries).
+You can also try it [in your browser]({{TRAFFIC_HOST1_30101}}/countries).
