@@ -35,7 +35,8 @@
       {
         "title": "Generate Pact from Consumer",
         "text": "step6-consumer.md",
-        "code": "clear.sh"
+        "code": "clear.sh",
+        "background": "step6-background.sh"
       },
       {
         "title": "Run H2 Database",
@@ -45,7 +46,8 @@
       {
         "title": "Run World Population Microservice",
         "text": "step8-run-world-ms.md",
-        "code": "clear.sh"
+        "code": "clear.sh",
+        "background": "step8-background.sh"
       },
       {
         "title": "Run COVID-19 Microservice",
