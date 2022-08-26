@@ -256,7 +256,7 @@ Consumer requires additional field from provider which provider already provides
 Safe
 
 18. `pact-broker publish pacts/pact_bdc_v1.0.1.json --consumer-app-version 1.0.1 --branch testbranch1`{{execute}}
-19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment production`{{execute}}
+19. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.1 --to-environment devmock`{{execute}}
 
 ## Making a consumer change 2
 
@@ -265,7 +265,7 @@ Consumer requires additional field from provider which provider does provide
 Unsafe
 
 20. `pact-broker publish pacts/pact_bdc_v1.0.2.json --consumer-app-version 1.0.2 --branch testbranch2`{{execute}}
-21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment production`{{execute}}
+21. `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.2 --to-environment devmock`{{execute}}
 
 ## Making a consumer change 3
 
@@ -274,4 +274,4 @@ Consumer changes to expect via a new endpoint
 Unsafe
 
 1.  `pact-broker publish pacts/pact_bdc_v1.0.3.json --consumer-app-version 1.0.3 --branch testbranch3`{{execute}}
-2.  `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment production`{{execute}}
+2.  `pact-broker can-i-deploy --pacticipant pactflow-example-consumer --version 1.0.3 --to-environment devmock`{{execute}}
