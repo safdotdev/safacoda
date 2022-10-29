@@ -7,7 +7,9 @@
     "steps": [
       {
         "title": "Step 1",
-        "text": "step1.md"
+        "text": "step1.md",
+        "verify": "step1-verify.sh",
+        "foreground": "step1-shell.sh"
       }
     ],
     "intro": {
