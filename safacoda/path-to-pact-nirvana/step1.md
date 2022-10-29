@@ -27,4 +27,4 @@
 24. `cd ~/path-to-pact-nirvana/Step_13_CompleteBuild`{{exec}}
 25. `make ci_consumer`{{exec}}
 26. `make ci_provider`{{exec}}
-27. `make ci_provider_contract_requiring_verification`{{exec}}
+27. `PACT_URL=<your_pact_url> make ci_provider_contract_requiring_verification`{{exec}}
