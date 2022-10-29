@@ -9,3 +9,4 @@
 7. `make test_pact_js_provider`{{exec}}
 8. `make install_pact_python`{{exec}}
 8. `make test_pact_python_consumer`{{exec}}
+9. `make verify_pact_python_consumer`{{exec}}
