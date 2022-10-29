@@ -1,6 +1,6 @@
 ## Get started with pact
 
-`cd ~`{{exec}}
+`cd ~/path-to-pact-nirvana`{{exec}}
 
 1. `cd ./Step_01_WriteYourFirstPact`{{exec}}
 2. `npm run test:consumer`{{exec}}

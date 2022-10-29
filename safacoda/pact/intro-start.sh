@@ -18,3 +18,4 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
 echo "Downloading projects"
 echo "=> downloading consumer project"
 git clone https://github.com/YOU54F/path-to-pact-nirvana
+cd path-to-pact-nirvana
