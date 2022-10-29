@@ -1,0 +1,7 @@
+pact
+pactflow_cookies.json
+tokens.response.json
+.env
+.vscode
+cookie*
+.pactflow.env
