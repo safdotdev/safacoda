@@ -5,6 +5,12 @@ echo "Downloading projects"
 echo "=> downloading consumer project"
 git clone https://github.com/YOU54F/pact-logical-replication
 cd pact-logical-replication
+export PGUSER=postgres
+export PGPASSWORD=postgres
+export PGDATABASE=postgres
+export PGHOST=localhost
+export POSTGRES_REP_USER=reptest
+export POSTGRES_REP_PASSWORD=reptest 
 # echo "Installing Pact CLI Tools"
 # echo "=> downloading Pact CLI Tools"
 # os='linux-x86_64'
