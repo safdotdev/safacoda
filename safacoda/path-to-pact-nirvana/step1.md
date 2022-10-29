@@ -15,11 +15,11 @@
 13. `cd ~/path-to-pact-nirvana/Step_07_VerifyYourFirstPactFromCI`{{exec}}
 14. `make ci`{{exec}}
 15. `cd ~/path-to-pact-nirvana/Step_08_AddCanIDeployForProvider`{{exec}}
-16. `make can_i_deploy`{{exec}}
+16. `make can_i_deploy_docker`{{exec}}
 17. `cd ~/path-to-pact-nirvana/Step_09_AddRecordDeploymentForProvider`{{exec}}
-18. `make record_deployment`{{exec}}
+18. `make record_deployment_docker`{{exec}}
 19. `cd ~/path-to-pact-nirvana/Step_10_AddCanIDeployForConsumer`{{exec}}
-20. `make can_i_deploy`{{exec}}
+20. `make can_i_deploy_docker`{{exec}}
 21. `cd ~/path-to-pact-nirvana/Step_11_AddRecordDeploymentForConsumer`{{exec}}
-22. `make record_deployment`{{exec}}
+22. `make record_deploymen_dockert`{{exec}}
 23. `cd ~/path-to-pact-nirvana/Step_13_CompleteBuild`{{exec}}
