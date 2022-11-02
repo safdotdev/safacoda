@@ -1,6 +1,6 @@
 {
   "title": "Pact - Logical Replication Testing",
-  "description": "Teach the basics of Pact Message Testing with Postgres Change Data Capture",
+  "description": "Teach the basics of Pact FFI and Pact-Plugins with Ruby & gRPC",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
