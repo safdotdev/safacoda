@@ -11,7 +11,10 @@
 9. `cd examples/area_calculator && bundle install`{{exec}}
 10. `cd ~/pact-ruby-ffi`{{exec}}
 11. `pact/plugin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest`{{exec}}
-12. `rspec examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`{{exec}}
-13. `cat pacts/grpc-consumer-ruby-area-calculator-provider.json | jq .`{{exec}}
-14. `rspec examples/area_calculator/area_calculator_provider.rb`{{exec}} in one tab
-15. `rspec examples/area_calculator/area_calculator_consumer.rb`{{exec}} in the second tab
+12. `ls ../.pact/plugins/protobuf-0.1.15`{{exec}}
+13. `cat ../.pact/plugins/protobuf-0.1.15/pact-plugin.json | jq .`{{exec}}
+14. `rspec examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`{{exec}}
+15. `cat pacts/grpc-consumer-ruby-area-calculator-provider.json | jq .`{{exec}}
+16. `cat ../.pact/plugins/protobuf-0.1.15/log/plugin.log.json.* | jq .`{{exec}}
+17. `ruby examples/area_calculator/area_calculator_provider.rb`{{exec}} in one tab
+18. `ruby examples/area_calculator/area_calculator_consumer.rb`{{exec}} in the second tab
