@@ -1,5 +1,5 @@
 {
-  "title": "Pact - Logical Replication Testing",
+  "title": "Pact - FFI / gRPC / Protobufs / Ruby",
   "description": "Teach the basics of Pact FFI and Pact-Plugins with Ruby & gRPC",
   "difficulty": "Beginner",
   "time": "15",
