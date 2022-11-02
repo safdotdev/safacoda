@@ -9,7 +9,7 @@ apt update && \
 apt --yes install curl g++ gcc autoconf automake bison libc6-dev \
         libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool \
         libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev \
-        libreadline-dev libssl-dev && \
+        libreadline-dev libssl-dev jq && \
         curl -sSL https://rvm.io/mpapis.asc | gpg --import - && \
 curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - && \
 curl -sSL https://get.rvm.io | bash -s stable && \
