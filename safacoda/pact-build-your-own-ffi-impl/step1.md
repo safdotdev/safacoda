@@ -3,7 +3,7 @@
 1. `cd ~/pact-ruby-ffi`{{exec}} -< If you get stuck, click here!
 2. `bundle install`{{exec}}
 3. `./script/download-libs.sh`{{exec}} you will need to download the FFI library, in order to use it!
-4. `[ -f "pact/ffi/linuxx8664/libpact_ffi.so " ] && echo "OK"
+4. `[ -f "pact/ffi/linuxx8664/libpact_ffi.so " ] && echo "OK"`{{exec}}
 
 5. `[ -f pacts/http-consumer-1-http-provider.json  ] && echo "OK"`{{exec}}
 
