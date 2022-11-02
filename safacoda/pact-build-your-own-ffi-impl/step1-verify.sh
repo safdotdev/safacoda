@@ -1,2 +1,2 @@
-!/bin/bash
-[ -f pact/ffi/linuxx8664/libpact_ffi.so  ] && echo "done"
+#!/bin/bash
+[ -f ~/pact-ruby-ffi/pact/ffi/linuxx8664/libpact_ffi.so  ] && echo "done"
