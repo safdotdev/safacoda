@@ -9,9 +9,8 @@ See how a language implementation can interact with the Pact FFI, and create up 
 You will:
 
 1. See a Pact implementation, using Rust FFI (Ruby for the lolz)
- 4. Build a hello pact
-     1. Init the FFI and log a message
- 5. Write your first http pact
- 6. Write your first message pact
- 7. Write your first plugin pact for with pact protobuf plugin
- 8. Write your own plugin
+   1. See a http v3 Pact test and pact file
+   2. See a message v3 Pact test and pact file
+   3. See a http v4 test and pact file
+   4. See a async message v4 Pact test, tested with the pact-protobuf-plugin and corresponding pact file
+   5. See a working codebase to get some ideas of how it hangs together
