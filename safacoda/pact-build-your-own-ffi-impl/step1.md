@@ -74,6 +74,8 @@
 1. `cd ~/pact-ruby-ffi`{{exec}}
 1. `ruby examples/area_calculator/area_calculator_consumer.rb`{{exec}}
 
+You should see the area result, switch back to tab 1, and you will see a log message from the provider stating it received the request, and calculated a result
+
 ## Tada
 
 That is it for now, take some time to click around the codebase if you want otherwise catch us over at the [Pact Foundation Slack](http://slack.pact.io/)
