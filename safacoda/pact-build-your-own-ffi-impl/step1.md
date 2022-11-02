@@ -74,7 +74,6 @@
 1. `source /etc/profile.d/rvm.sh`{{exec}}
 2. `cd ~/pact-ruby-ffi`{{exec}}
 3. `ruby examples/area_calculator/area_calculator_consumer.rb`{{exec}}
-4. `ruby examples/area_calculator/area_calculator_consumer.rb`{{exec}}
 
 
 ## Tada
