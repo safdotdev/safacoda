@@ -8,16 +8,6 @@ See how a language implementation can interact with the Pact FFI, and create up 
 
 You will:
 
-1. History of Pact
-2. HTTP Pact from Ruby
-3. Birth of the next implementations
-4. V2 Spec
-5. V3 Spec - Message Pact
-6. Pact Rust
-7. Pact FFI
-8. Pact FFI Implementations
-9. Pact Plugins
-10. Pact Protobuf Plugin
 11. Build your own Pact implementation, using Rust FFI (Ruby for the lolz)
     1. Find FFI Docs
     2. Look at other implementations
