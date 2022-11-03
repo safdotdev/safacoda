@@ -22,7 +22,11 @@
   },
   "environment": {
     "hidefinish": true,
-    "uilayout": "vscode-terminal-split"
+    "uilayout": "vscode-terminal-split",
+    "dashboards": [
+      { "name": "Postgres DB", "port": 5432 },
+      { "name": "Pact Broker", "port": 8000 }
+    ]
   },
   "backend": {
     "imageid": "ubuntu"

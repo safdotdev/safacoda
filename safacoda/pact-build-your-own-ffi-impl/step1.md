@@ -76,6 +76,32 @@
 
 You should see the area result, switch back to tab 1, and you will see a log message from the provider stating it received the request, and calculated a result
 
+## Lets verify our Provider with the Pact Verifier CLI
+
+todo
+
+## Lets get a Pact Broker
+
+1. `curl https://rebrand.ly/getpact -Lso - | bash -s -- broker deploy mybroker 8000`{{exec}}
+1. It will take a little while to download the Docker images for your Pact Broker, and Postgres database.
+2. After a short while, a the new web interface will be available.
+3. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
+
+## Publish our pacts to our broker
+
+1. `export PACT_BROKER_USERNAME=pact_workshop`{{exec}}
+2. `export PACT_BROKER_PASSWORD=pact_workshop`{{exec}}
+3. `export PACT_BROKER_BASE_URL={{TRAFFIC_HOST1_8000}})`{{exec}}
+4. `alias pact-broker=~/pact-ruby-ffi/pact/standalone/linux-x64-1.91.0/pact/bin/pact-broker`{{exec}}
+5. `pact-broker publish pacts --consumer-app-version $(git rev-parse HEAD) --branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
+6. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
+
+## Verify our running provider, and publish the results to the Broker.
+
+1. `todo`{{exec}}
+2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
+
+
 ## Tada
 
 That is it for now, take some time to click around the codebase if you want otherwise catch us over at the [Pact Foundation Slack](http://slack.pact.io/)
