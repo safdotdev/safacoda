@@ -82,10 +82,12 @@ todo
 
 ## Lets get a Pact Broker
 
-1. `curl https://rebrand.ly/getpact -Lso - | bash -s -- broker deploy mybroker 8000`{{exec}}
-1. It will take a little while to download the Docker images for your Pact Broker, and Postgres database.
-2. After a short while, a the new web interface will be available.
-3. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
+1. {{TRAFFIC_HOST1_5432}}
+2. [Pact Broker]({{TRAFFIC_HOST1_5432}})
+3. `curl https://rebrand.ly/getpact -Lso - | bash -s -- broker deploy mybroker 8000`{{exec}}
+4. It will take a little while to download the Docker images for your Pact Broker, and Postgres database.
+5. After a short while, a the new web interface will be available.
+6. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
 
 ## Publish our pacts to our broker
 
