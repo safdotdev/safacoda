@@ -83,7 +83,7 @@ todo
 ## Lets get a Pact Broker
 
 1. {{TRAFFIC_HOST1_5432}}
-2. [Pact Broker]({{TRAFFIC_HOST1_5432}})
+2. [Click me]({{TRAFFIC_HOST1_5432}}) to open the database port `5432` for communication, this is necessary so our Pact Broker is able to talk to our database in the Killercoda environment.
 3. `curl https://rebrand.ly/getpact -Lso - | bash -s -- broker deploy mybroker 8000`{{exec}}
 4. It will take a little while to download the Docker images for your Pact Broker, and Postgres database.
 5. After a short while, a the new web interface will be available.
@@ -91,8 +91,8 @@ todo
 
 ## Publish our pacts to our broker
 
-1. `export PACT_BROKER_USERNAME=pact_workshop`{{exec}}
-2. `export PACT_BROKER_PASSWORD=pact_workshop`{{exec}}
+1. `export PACT_BROKER_USERNAME=pact`{{exec}}
+2. `export PACT_BROKER_PASSWORD=pact`{{exec}}
 3. `export PACT_BROKER_BASE_URL={{TRAFFIC_HOST1_8000}})`{{exec}}
 4. `alias pact-broker=~/pact-ruby-ffi/pact/standalone/linux-x64-1.91.0/pact/bin/pact-broker`{{exec}}
 5. `pact-broker publish pacts --consumer-app-version $(git rev-parse HEAD) --branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
