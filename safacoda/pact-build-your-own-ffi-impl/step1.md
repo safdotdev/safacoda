@@ -98,11 +98,20 @@ todo
 5. `pact-broker publish pacts --consumer-app-version $(git rev-parse HEAD) --branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
 6. Click on the links to to see the individual pacts published in the Broker.
 
-## Verify our running provider, and publish the results to the Broker.
+## Verify our running provider locally
 
-1. `todo`{{exec}}
-2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents.
+ensure our provider is running `ruby examples/area_calculator/area_calculator_provider.rb`
 
+1. `pact_verifier_cli -f pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}}
+2. Tests should pass!
+3. Stop the provider and run the tests again, the verification should correctly fail.
+   
+## Verify our running provider, and publish results to the broker
+
+1. `pact_verifier_cli -f pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
+2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents, you can see a passing verification. If you stop the provider and run it again, you will observe a failing pact.
+
+We only recommend publishing verification results from your CI system, so it is always best to use a read only user to retrieve the pacts, who doesn't have writes to publish verification results
 
 ## Tada
 
