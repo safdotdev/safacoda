@@ -2,12 +2,12 @@
 
 echo "Downloading pact plugins repo"
 git clone --depth 1 --shallow-submodules https://github.com/pact-foundation/pact-plugins.git
-apt update && \
+add-apt-repository --yes ppa:longsleep/golang-backports && apt update && \
 echo "Installing apt dependencies & golang"
 apt --yes install curl g++ gcc autoconf automake bison libc6-dev \
         libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool \
         libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev \
-        libreadline-dev libssl-dev jq golang-go && \
+        libreadline-dev libssl-dev jq golang-1.17 && \
 echo "Installing OpenJDK 11" && \
 mkdir -p /usr/java && \
 cd /usr/java && \

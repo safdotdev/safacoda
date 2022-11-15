@@ -16,3 +16,13 @@ You will:
 1. Publish your consumer gRPC test to the Pact broker
 1. Verify your gRPC provider application with Pact, using the local pact file, publishing results to the broker
 1. Verify your gRPC provider application with Pact, using the published pact file, publishing results to the broker
+
+
+
+- `~/pact-plugins/scripts/install-plugin-cli.sh`{{exec}}
+- `~/bin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest`{{exec}}
+- `~/pact-plugins/scripts/install-verifier-cli.sh `{{exec}}
+- `cd ~/pact-plugins/examples/gRPC/area_calculator/`{{exec}}
+- ``{{exec}}
+- ``{{exec}}
+- ``{{exec}}
