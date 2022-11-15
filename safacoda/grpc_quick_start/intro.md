@@ -70,6 +70,7 @@ cd ~/pact-plugins/examples/gRPC/area_calculator/
 echo '==== RUNNING consumer-rust'
 cd consumer-rust
 cargo test
+cat /root/pact-plugins/examples/gRPC/area_calculator/consumer-rust/target/pacts/grpc-consumer-rust-area-calculator-provider.json | jq .
 ```{{exec}}
 
 
