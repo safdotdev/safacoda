@@ -1,86 +1,55 @@
 ## Get started with Pact FFI and Pact Plugins
 
-1. `cd ~/pact-ruby-ffi`{{exec}} -< If you get stuck, click here!
-2. `bundle install`{{exec}}
-1. `./script/download-libs.sh`{{exec}} you will need to download the FFI library, in order to use it!
-1. `[ -f "pact/ffi/linuxx8664/libpact_ffi.so" ] && echo "OK"`{{exec}}
-1. `clear`{{exec}}
-
-###  Run your tests
-
-1. `rake spec`{{exec}} You can run the tests now
-1. `clear`{{exec}}
-
-### Check the http pact
-
-1. `[ -f "pacts/Consumer-Alice Service.json"  ] && echo "OK"`{{exec}}
-1. `cat "pacts/Consumer-Alice Service.json" | jq .`{{exec}}
-1. `clear`{{exec}}
-
-### Check another http pact
-
-1. `[ -f pacts/http-consumer-1-http-provider.json ] && echo "OK"`{{exec}}
-1. `cat pacts/http-consumer-1-http-provider.json | jq .`{{exec}}
-1. `clear`{{exec}}
-
-### Check another http pact
-
-1. `[ -f pacts/http-consumer-2-http-provider.json ] && echo "OK"`{{exec}}
-1. `cat pacts/http-consumer-2-http-provider.json | jq .`{{exec}}
-1. `clear`{{exec}}
-
-### Check a message pact
-
-1. `[ -f pacts/message-consumer-2-message-provider.json  ] && echo "OK"`{{exec}}
-1. `cat pacts/message-consumer-2-message-provider.json | jq .`{{exec}}
-1. `clear`{{exec}}
-
-##  Lets use a Pact plugin, and see a Protobuf test in action
-
 ### Lets move to our gRPC demo project
 
-1. `cd examples/area_calculator && bundle install`{{exec}}
-1. `clear`{{exec}}
+1. `cd ~/pact-ruby-ffi`{{exec}}
+
+### Run the provider (in your first tab)
+
+1. `make install_demo_grpc`{{exec}} Install our product dependencies
+1. `ruby examples/area_calculator/area_calculator_provider.rb &`{{exec}} This will start our provider, listening in a background process.
+2. `ruby examples/area_calculator/area_calculator_consumer_run.rb`{{exec}} We can now run our tests
+
+You should see the area result, and you will see a log message from the provider stating it received the request, and calculated a result
+
+1. `ps -a | grep -e 'area_calculator_provider' | awk '{print $1}' | xargs kill`{{exec}} Lets close down our running provider.
+
+##  Lets use a Pact plugin, and see a Protobuf test in action
 
 ### Install the plugin
 
 1. `cd ~/pact-ruby-ffi`{{exec}}
-1. `pact/plugin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest`{{exec}}
-1. `[ -f ../.pact/plugins/protobuf-0.1.15/pact-plugin.json  ] && echo "OK"`{{exec}}
-1. `cat ../.pact/plugins/protobuf-0.1.15/pact-plugin.json | jq .`{{exec}}
-1. `ls ../.pact/plugins/protobuf-0.1.15`{{exec}}
-1. `clear`{{exec}}
+2. `make download_libs`{{exec}}
+3. `make install_protobuf_plugin`{{exec}}
 
 ###  Run the tests
 
-7. `rspec examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`{{exec}}
-1. `[ -f pacts/grpc-consumer-ruby-area-calculator-provider.json  ] && echo "OK"`{{exec}}
-2. `cat pacts/grpc-consumer-ruby-area-calculator-provider.json | jq .`{{exec}}
-1. `clear`{{exec}}
+4. `make test_demo_gprc_pact`{{exec}}
+5. `make show_demo_gprc_pact`{{exec}}
 
 ###  Check the plugin logs
 
-1. `[ -f pacts/grpc-consumer-ruby-area-calculator-provider.json  ] && echo "OK"`{{exec}}
-1. `cat ../.pact/plugins/protobuf-0.1.15/log/plugin.log.json.* | jq .`{{exec}}
+1. `[ -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json  ] && echo "OK"`{{exec}}
+1. `cat ../.pact/plugins/protobuf-0.1.16/log/plugin.log.json.* | jq .`{{exec}}
 1. `clear`{{exec}}
 
-### Run the provider (in your first tab)
+## Verify our running provider locally
 
-1. `ruby examples/area_calculator/area_calculator_provider.rb`{{exec}} in one tab
+This command will start our provider, and then run the Pact Verifier CLI against the running provider and then shut it down.
 
-### Run the consumer (in your second tab)
+6. `make verify_demo_gprc_local`{{exec}}
 
-1. `source /etc/profile.d/rvm.sh`{{exec}}
-1. `cd ~/pact-ruby-ffi`{{exec}}
-1. `ruby examples/area_calculator/area_calculator_consumer.rb`{{exec}}
+The steps in detail.
 
-You should see the area result, switch back to tab 1, and you will see a log message from the provider stating it received the request, and calculated a result
-
-## Lets verify our Provider with the Pact Verifier CLI
-
-todo
+1. We ensure our provider is running `ruby examples/area_calculator/area_calculator_provider.rb &`{{exec}}
+1. `pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}}
+2. Tests should pass!
+3. `ps -a | grep -e 'area_calculator_provider' | awk '{print $1}' | xargs kill`{{exec}} Stop the provider
+1. `pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}} Run the tests again, the verification should correctly fail.
 
 ## Lets get a Pact Broker
+
+Now we have a passing test locally on the consumer side, and we have verified it on the provider side, we should now publish these to a Pact Broker to get the full benefits of contract testing.
 
 1. `curl https://rebrand.ly/getpact -Lso - | bash -s -- broker deploy mybroker 8000`{{exec}}
 2. It will take a little while to download the Docker images for your Pact Broker, and Postgres database.
@@ -95,20 +64,24 @@ todo
 2. `export PACT_BROKER_PASSWORD=pact`{{exec}}
 3. `export PACT_BROKER_BASE_URL={{TRAFFIC_HOST1_8000}}`{{exec}}
 4. `alias pact-broker=~/pact-ruby-ffi/pact/standalone/linux-x64-1.91.0/pact/bin/pact-broker`{{exec}}
-5. `pact-broker publish pacts --consumer-app-version $(git rev-parse HEAD) --branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
+5. `pact-broker publish examples/area_calculator/pacts --consumer-app-version $(git rev-parse HEAD) --branch $(git rev-parse --abbrev-ref HEAD)`{{exec}} or `make publish_grpc_pact`{{exec}}
 6. Click on the links to to see the individual pacts published in the Broker.
 
-## Verify our running provider locally
-
-ensure our provider is running `ruby examples/area_calculator/area_calculator_provider.rb`
-
-1. `pact_verifier_cli -f pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}}
-2. Tests should pass!
-3. Stop the provider and run the tests again, the verification should correctly fail.
-   
 ## Verify our running provider, and publish results to the broker
 
-1. `pact_verifier_cli -f pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD)`{{exec}}
+We will utilise our Pact Broker, by publishing the results from a local verification. We will use the pact file we have locally.
+
+1. `pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD)`{{exec}} or `make verify_demo_gprc_publish_broker`{{exec}} to start the provider and run the tests
+2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents, you can see a passing verification. If you stop the provider and run it again, you will observe a failing pact.
+
+We only recommend publishing verification results from your CI system, so it is always best to use a read only user to retrieve the pacts, who doesn't have writes to publish verification results
+
+## Verify our running provider, and publish results to the broker
+
+We will utilise our Pact Broker, by publishing the results from a local verification. We will retrieve pact files from the Pact Broker, rather than providing a file directly. 
+
+
+1. `pact_verifier_cli -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD) --consumer-version-selectors {\"matchingBranch\":true}"`{{exec}} or `make verify_demo_gprc_fetch_broker`{{exec}} to start the provider and run the tests
 2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents, you can see a passing verification. If you stop the provider and run it again, you will observe a failing pact.
 
 We only recommend publishing verification results from your CI system, so it is always best to use a read only user to retrieve the pacts, who doesn't have writes to publish verification results
@@ -118,7 +91,6 @@ We only recommend publishing verification results from your CI system, so it is 
 That is it for now, take some time to click around the codebase if you want otherwise catch us over at the [Pact Foundation Slack](http://slack.pact.io/)
 
 1. `exit`{{exec}}
-
 
 ## Ruby FFI Plugin
 
@@ -134,7 +106,6 @@ That is it for now, take some time to click around the codebase if you want othe
 9. `make show_pactffi_create_mock_server`{{exec}}
 10. `make publish_pacts`{{exec}}
 
-
 ## grpc_demo_protobuf_plugin
 
 1. `cd ~/pact-ruby-ffi`{{exec}}
@@ -146,6 +117,6 @@ That is it for now, take some time to click around the codebase if you want othe
 6. `make test_demo_gprc_pact`{{exec}}
 7. `make show_demo_gprc_pact`{{exec}}
 8. `make verify_demo_gprc_local`{{exec}}
-9. `make publish_pacts`{{exec}}
+9. `make publish_grpc_pact`{{exec}}
 10. `make verify_demo_gprc_publish_broker`{{exec}}
 11. `make verify_demo_gprc_fetch_broker`{{exec}}
