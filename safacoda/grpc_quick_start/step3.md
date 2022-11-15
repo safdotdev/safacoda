@@ -37,3 +37,15 @@ We are setting up the gRPC Pact interaction, and loading into it, the Protobuf d
 4. `make test_demo_gprc_pact`{{exec}}
 5. `[ -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json  ] && echo "OK"`{{exec}}
 6. `make show_demo_gprc_pact`{{exec}}
+
+
+### Take a look at the files used in this example
+
+1. `examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`
+2. `examples/area_calculator/area_calculator_consumer.rb`
+3. `examples/area_calculator/proto/area_calculator.proto`
+4. `examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json`
+5. Click the filename above to copy it.
+6. Click somewhere in the `editor` tab
+7. press `ctrl+p` or `command+p` to search for a file
+8.  Press `ctrl+v` or `command+v` to paste the filename and press enter
