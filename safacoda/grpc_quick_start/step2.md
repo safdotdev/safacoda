@@ -44,13 +44,17 @@ cd examples/area_calculator
 
 ### Install our dependencies
 
+We need to run this locally or in the Killercoda environment
+
 `make install_demo_grpc`{{exec}}
+
+It will change directory into our sample project and run `bundle install` to install our project dependencies
 
 ### Run a gRPC application
 
 From the `examples/area_calculator` directory:
 
- 1. Run the server as a background process with the `&` symbol - note the process identifier, we will use this later to close down the server:
+ 1. Run the server as a background process with the `&` symbol - note the process identifier stored as `&_pid` , we will use this later to close down the server:
 
 `ruby examples/area_calculator/area_calculator_provider.rb &_pid=$!`{{exec}}
 
