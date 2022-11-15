@@ -18,11 +18,35 @@ You will:
 1. Verify your gRPC provider application with Pact, using the published pact file, publishing results to the broker
 
 
+Install our Protobuf Plugin
 
 - `~/pact-plugins/scripts/install-plugin-cli.sh`{{exec}}
 - `~/bin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest`{{exec}}
+
+Install the Pact Verifier
+
 - `~/pact-plugins/scripts/install-verifier-cli.sh `{{exec}}
+
+
+Install the FFI libraries
+
+- `go install github.com/pact-foundation/pact-go/v2@2.x.x`{{exec}}
+- `$HOME/go/bin/pact-go -l DEBUG install`{{exec}}
+- `sudo chmod 644 /usr/local/lib/libpact_ffi.so`{{exec}}
+- `ls -la /usr/local/lib/`{{exec}}
+
+
+Run the Consumer Go Tests
+  
 - `cd ~/pact-plugins/examples/gRPC/area_calculator/`{{exec}}
+- `cd consumer-go`{{exec}}
+- `go test -c`{{exec}}
+- `pact_do_not_track=true LOG_LEVEL=trace ./consumer.test`{{exec}}
+
+
+- ``{{exec}}
+- ``{{exec}}
+- ``{{exec}}
 - ``{{exec}}
 - ``{{exec}}
 - ``{{exec}}
