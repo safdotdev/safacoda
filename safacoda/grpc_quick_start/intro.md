@@ -8,9 +8,12 @@ See how a language implementation can interact with the [Pact FFI](https://githu
 
 You will:
 
-1. See a Pact implementation, using Rust FFI (Ruby for the lolz)
-   1. See a http v3 Pact test and pact file
-   2. See a message v3 Pact test and pact file
-   3. See a http v4 test and pact file
-   4. See an async message v4 Pact test, tested with the [pact-protobuf-plugin](https://github.com/pactflow/pact-protobuf-plugin) and corresponding pact file
-   5. See a working codebase to get some ideas of how it hangs together
+1. Learn about the basics of gRPC
+2. Run your first gRPC consumer and provider in Ruby, it will be a simple Area Calculator
+3. Write your first gRPC consumer test with Pact using the [pact-protobuf-plugin](https://github.com/pactflow/pact-protobuf-plugin)
+4. Test your gRPC consumer application with Pact, locally, which will generate a pact file.
+5. Verify your gRPC provider application with Pact, locally
+6. Setup a locally running Pact Broker
+7. Publish your consumer gRPC test to the Pact broker
+8. Verify your gRPC provider application with Pact, using the local pact file, publishing results to the broker
+9. Verify your gRPC provider application with Pact, using the published pact file, publishing results to the broker

@@ -149,3 +149,5 @@ That is it for now, take some time to click around the codebase if you want othe
 9. `make publish_grpc_pact`{{exec}}
 10. `make verify_demo_gprc_publish_broker`{{exec}}
 11. `make verify_demo_gprc_fetch_broker`{{exec}}
+
+For an overview how asynchronous messages work with Pact, see [Non-HTTP testing (Message Pact)](https://docs.pact.io/getting_started/how_pact_works#non-http-testing-message-pact).

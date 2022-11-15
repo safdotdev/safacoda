@@ -1,4 +1,4 @@
-## gRPC Area Calculator Quick Start - Ruby 
+## Run your first gRPC consumer and provider in Ruby, it will be a simple Area Calculator
 
 
 The Killercoda session is already pre-loaded with our pre-requisites, but you can following the pre-reqs and download the example, if you are following along on your local machine.

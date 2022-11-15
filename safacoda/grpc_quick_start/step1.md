@@ -1,6 +1,4 @@
-## Testing gRPC with Pact Protobuf/gRPC Plugin
-
-For an overview how asynchronous messages work with Pact, see Non-HTTP testing (Message Pact).
+## Learn about the basics of gRPC
 
 ## Introduction to gRPC
 
@@ -24,7 +22,10 @@ message Person {
 }
 ```
 
-Then, once you’ve specified your data structures, you use the protocol buffer compiler protoc to generate data access classes in your preferred language(s) from your proto definition. These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes. So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`. You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.
+Then, once you’ve specified your data structures, you use the protocol buffer compiler protoc to generate data access classes in your preferred language(s) from your proto definition.
+These provide simple accessors for each field, like `name()` and `set_name()`, as well as methods to serialize/parse the whole structure to/from raw bytes.
+ So, for instance, if your chosen language is C++, running the compiler on the example above will generate a class called `Person`.
+You can then use this class in your application to populate, serialize, and retrieve `Person` protocol buffer messages.
 
 You define gRPC services in ordinary proto files, with RPC method parameters and return types specified as protocol buffer messages:
 
