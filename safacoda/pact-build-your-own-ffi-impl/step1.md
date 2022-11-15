@@ -86,7 +86,7 @@ Run `make verify_demo_gprc_fetch_broker`{{exec}} to start the provider and run t
 The steps in detail
 
 1. `ruby examples/area_calculator/area_calculator_provider.rb &`{{exec}} This will start our provider, listening in a background process.
-1. `pact/verifier/pact_verifier_cli -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD) --consumer-version-selectors {\"matchingBranch\":true}"`{{exec}}
+1. `pact/verifier/pact_verifier_cli -p 37757 -l info --publish --provider-name area-calculator-provider --provider-version $(git rev-parse HEAD) --provider-branch $(git rev-parse --abbrev-ref HEAD) --consumer-version-selectors {\"matchingBranch\":true}`{{exec}}
 3. `ps -a | grep -e 'ruby' | awk '{print $1}' | xargs kill`{{exec}} Stop the provider
 2. Open the [Pact Broker]({{TRAFFIC_HOST1_8000}}) and observe it's contents, you can see a passing verification. If you stop the provider and run it again, you will observe a failing pact.
 
