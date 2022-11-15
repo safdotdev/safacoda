@@ -14,4 +14,4 @@ apt --yes install curl g++ gcc autoconf automake bison libc6-dev \
 curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - && \
 curl -sSL https://get.rvm.io | bash -s stable && \
 source /etc/profile.d/rvm.sh && rvm install 2.7.6 && \
-clear && echo "Welcome. The repo is download, ruby is installed, you are good to go!"
+clear && git checkout test && echo "Welcome. The repo is download, ruby is installed, you are good to go!"
