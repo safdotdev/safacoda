@@ -4,7 +4,7 @@
 
 ## Goals
 
-See how a language implementation can interact with the [Pact FFI](https://github.com/pact-foundation/pact-reference/tree/master/rust/pact_ffi#pact-ffi), and create up to V4 specification pact files, and interact with the [pact-plugin](https://github.com/pact-foundation/pact-plugins/) ecosystem
+Create a simple gRPC application, in Ruby, and test with Pact using the [pact-protobuf-plugin](https://github.com/pactflow/pact-protobuf-plugin) to showcase Pact's multi-protocol approach with the [pact-plugin](https://github.com/pact-foundation/pact-plugins) eco-system
 
 You will:
 
