@@ -27,11 +27,10 @@ You should see the area result, and you will see a log message from the provider
 4. `make test_demo_gprc_pact`{{exec}}
 5. `make show_demo_gprc_pact`{{exec}}
 
-###  Check the plugin logs
+###  Check the output pact file
 
 1. `[ -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json  ] && echo "OK"`{{exec}}
-1. `cat ../.pact/plugins/protobuf-0.1.16/log/plugin.log.json.* | jq .`{{exec}}
-1. `clear`{{exec}}
+1. `cat examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json  | jq .`{{exec}}
 
 ## Verify our running provider locally
 
@@ -42,10 +41,10 @@ This command will start our provider, and then run the Pact Verifier CLI against
 The steps in detail.
 
 1. We ensure our provider is running `ruby examples/area_calculator/area_calculator_provider.rb &`{{exec}}
-1. `pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}}
+1. `pact/verifier/pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}}
 2. Tests should pass!
-3. `ps -a | grep -e 'area_calculator_provider' | awk '{print $1}' | xargs kill`{{exec}} Stop the provider
-1. `pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}} Run the tests again, the verification should correctly fail.
+3. `ps -a | grep -e 'ruby' | awk '{print $1}' | xargs kill`{{exec}} Stop the provider
+1. `pact/verifier/pact_verifier_cli -f examples/area_calculator/pacts/grpc-consumer-ruby-area-calculator-provider.json -p 37757 -l info`{{exec}} Run the tests again, the verification should correctly fail.
 
 ## Lets get a Pact Broker
 
@@ -91,32 +90,3 @@ We only recommend publishing verification results from your CI system, so it is 
 That is it for now, take some time to click around the codebase if you want otherwise catch us over at the [Pact Foundation Slack](http://slack.pact.io/)
 
 1. `exit`{{exec}}
-
-## Ruby FFI Plugin
-
-1. `cd ~/pact-ruby-ffi`{{exec}}
-1. `gem update bundler`{{exec}}
-2. `make install`{{exec}}
-3. `make download_libs`{{exec}}
-4. `make test_message_pact`{{exec}}
-5. `make show_message_pact`{{exec}}
-6. `make test_pactffi_create_mock_server_for_pact`{{exec}}
-7. `make show_pactffi_create_mock_server_for_pact`{{exec}}
-8. `make test_pactffi_create_mock_server`{{exec}}
-9. `make show_pactffi_create_mock_server`{{exec}}
-10. `make publish_pacts`{{exec}}
-
-## grpc_demo_protobuf_plugin
-
-1. `cd ~/pact-ruby-ffi`{{exec}}
-1. `gem update bundler`{{exec}}
-2. `make install`{{exec}}
-3. `make download_libs`{{exec}}
-4. `make install_protobuf_plugin`{{exec}}
-5. `make install_demo_grpc`{{exec}}
-6. `make test_demo_gprc_pact`{{exec}}
-7. `make show_demo_gprc_pact`{{exec}}
-8. `make verify_demo_gprc_local`{{exec}}
-9. `make publish_grpc_pact`{{exec}}
-10. `make verify_demo_gprc_publish_broker`{{exec}}
-11. `make verify_demo_gprc_fetch_broker`{{exec}}
