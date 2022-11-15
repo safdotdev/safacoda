@@ -22,8 +22,15 @@ The following steps will use a script file to
 
 ###  Write our tests
 
-See file
-1. `examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`{{open}}
+1. `examples/area_calculator/spec/pactffi_create_plugin_pact_spec.rb`
+5. Click the filename above to copy it.
+6. Click somewhere in the `editor` tab
+7. press `ctrl+p` or `command+p` to search for a file
+8. Press `ctrl+v` or `command+v` to paste the filename and press enter
+
+Take some time to study the Pact test. 
+
+We are setting up the gRPC Pact interaction, and loading into it, the Protobuf definition `examples/area_calculator/proto/area_calculator.proto`
 
 ###  Run the tests
 
