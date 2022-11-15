@@ -52,8 +52,6 @@ It will change directory into our sample project and run `bundle install` to ins
 
 ### Run a gRPC application
 
-From the `examples/area_calculator` directory:
-
  1. Run the server as a background process with the `&` symbol - note the process identifier stored as `&_pid` , we will use this later to close down the server:
 
 `ruby examples/area_calculator/area_calculator_provider.rb &_pid=$!`{{exec}}
@@ -71,3 +69,17 @@ Congratulations! You've just run a client-server application with gRPC.
 1. Lets close down our running provider, we use our process identifier, and tell our system to kill that process
 
 `kill $_pid`{{exec}}
+
+
+### Take a look at the files used in this example
+
+1. `examples/area_calculator/area_calculator_consumer_run.rb`
+2. `examples/area_calculator/area_calculator_consumer.rb`
+3. `examples/area_calculator/area_calculator_provider.rb`
+4. `examples/area_calculator/proto/area_calculator.proto`
+5. `examples/area_calculator/lib/area_calculator_pb.rb`
+6. `examples/area_calculator/lib/area_calculator_services_pb.rb`
+7. Click the filename above to copy it.
+8. Click somewhere in the `editor` tab
+9. press `ctrl+p` or `command+p` to search for a file
+10. Press `ctrl+v` or `command+v` to paste the filename and press enter
