@@ -40,10 +40,9 @@ Start your tests from here!
   
 - `cd ~/pact-plugins/examples/gRPC/area_calculator/`{{exec}}
 
-
 ## Consumers
 
-### JVM
+### JVM
 
 ```sh
 cd ~/pact-plugins/examples/gRPC/area_calculator/
@@ -76,7 +75,7 @@ cat /root/pact-plugins/examples/gRPC/area_calculator/consumer-rust/target/pacts/
 
 ## Providers
 
-### JVM
+### JVM
 
 
 ```sh
