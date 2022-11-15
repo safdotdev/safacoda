@@ -39,7 +39,9 @@ Download the Protobuf plugin, with the Pact Plugin CLI
 
 Take some time to study the Pact test.
 
-We are setting up the gRPC Pact interaction, and loading into it, the Protobuf definition `examples/area_calculator/proto/area_calculator.proto`
+We are setting up the gRPC Pact interaction, and loading into it, the Protobuf definition, which you can see in the following file
+
+- `examples/area_calculator/proto/area_calculator.proto`
 
 ###  Run the tests
 
