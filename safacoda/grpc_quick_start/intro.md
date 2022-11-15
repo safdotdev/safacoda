@@ -95,11 +95,9 @@ cp ../consumer-go/pacts/* server/src/test/resources/pacts
 cd ~/pact-plugins/examples/gRPC/area_calculator/
 echo '==== RUNNING consumer-go'
 cd provider-go
-set -x
 go build provider.go
-nohup ./provider > provider.go.out 2>&1 &
+./provider > provider.go.out 2>&1 &
 PID=$!
-trap "kill $PID" EXIT
 sleep 1
 ls -la
 PROVIDER_PORT=$(cat provider.go.out | cut -f4 -d:)
@@ -107,4 +105,5 @@ pact_do_not_track=true ~/bin/pact_verifier_cli -f ../consumer-jvm/build/pacts/gr
   -f ../consumer-rust/target/pacts/grpc-consumer-rust-area-calculator-provider.json\
   -f ../consumer-go/pacts/grpc-consumer-go-area-calculator-provider.json\
   -p "$PROVIDER_PORT"
+kill $PID
 ```{{exec}}
