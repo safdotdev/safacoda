@@ -28,7 +28,7 @@ Install the Pact Verifier
 - `~/pact-plugins/scripts/install-verifier-cli.sh `{{exec}}
 
 
-Install the FFI libraries
+Install the FFI libraries - We will use the Pact-Go's helper function, to install the right version for our platform, you can download them directly from the [pact-reference release page](https://github.com/pact-foundation/pact-reference/releases/tag/libpact_ffi-v0.3.14)
 
 - `go install github.com/pact-foundation/pact-go/v2@2.x.x`{{exec}}
 - `$HOME/go/bin/pact-go -l DEBUG install`{{exec}}
@@ -36,17 +36,28 @@ Install the FFI libraries
 - `ls -la /usr/local/lib/`{{exec}}
 
 
-Run the Consumer Go Tests
+Start your tests from here!
   
 - `cd ~/pact-plugins/examples/gRPC/area_calculator/`{{exec}}
-- `cd consumer-go`{{exec}}
-- `go test -c`{{exec}}
-- `pact_do_not_track=true LOG_LEVEL=trace ./consumer.test`{{exec}}
 
 
-- ``{{exec}}
-- ``{{exec}}
-- ``{{exec}}
-- ``{{exec}}
-- ``{{exec}}
-- ``{{exec}}
+## Consumers
+
+### JVM
+
+```
+cd ~/pact-plugins/examples/gRPC/area_calculator/
+echo '==== RUNNING consumer-jvm'
+cd consumer-jvm
+./gradlew check
+```{{exec}}
+
+### GoLang
+
+```
+cd ~/pact-plugins/examples/gRPC/area_calculator/
+echo '==== RUNNING consumer-go'
+cd consumer-go
+go test -c
+pact_do_not_track=true LOG_LEVEL=trace ./consumer.test
+```{{exec}}
