@@ -2,16 +2,15 @@
 
 echo "Downloading pact plugins repo"
 git clone --depth 1 --shallow-submodules https://github.com/pact-foundation/pact-plugins.git
-cd examples/gRPC/area_calculator
 apt update && \
 echo "Installing apt dependencies & golang"
 apt --yes install curl g++ gcc autoconf automake bison libc6-dev \
         libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool \
         libyaml-dev make pkg-config sqlite3 zlib1g-dev libgmp-dev \
         libreadline-dev libssl-dev jq golang-go && \
-echo "Installing OpenJDK 11"
-mkdir -p /usr/java
-cd /usr/java
-wget -c https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
+echo "Installing OpenJDK 11" && \
+mkdir -p /usr/java && \
+cd /usr/java && \
+wget -c https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz && \
 tar -xf openjdk-11_linux-x64_bin.tar.gz && \
 clear && cd ~/pact-plugins/examples/gRPC/area_calculator && echo "Welcome. The repo is download, dependencies are installed, you are good to go!"
