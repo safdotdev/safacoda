@@ -122,28 +122,30 @@ That is it for now, take some time to click around the codebase if you want othe
 
 ## Ruby FFI Plugin
 
-      1. `gem update bundler`{{exec}}
-      1. `make install`{{exec}}
-      1. `make download_libs`{{exec}}
-      1. `make test_message_pact`{{exec}}
-      1. `make show_message_pact`{{exec}}
-      1. `make test_pactffi_create_mock_server_for_pact`{{exec}}
-      1. `make show_pactffi_create_mock_server_for_pact`{{exec}}
-      1. `make test_pactffi_create_mock_server`{{exec}}
-      1. `make show_pactffi_create_mock_server`{{exec}}
-      1. `make publish_pacts`{{exec}}
+1. `cd ~/pact-ruby-ffi`{{exec}}
+1. `gem update bundler`{{exec}}
+2. `make install`{{exec}}
+3. `make download_libs`{{exec}}
+4. `make test_message_pact`{{exec}}
+5. `make show_message_pact`{{exec}}
+6. `make test_pactffi_create_mock_server_for_pact`{{exec}}
+7. `make show_pactffi_create_mock_server_for_pact`{{exec}}
+8. `make test_pactffi_create_mock_server`{{exec}}
+9. `make show_pactffi_create_mock_server`{{exec}}
+10. `make publish_pacts`{{exec}}
 
 
 ## grpc_demo_protobuf_plugin
 
-      1. `gem update bundler`{{exec}}
-      1. `make install`{{exec}}
-      1. `make download_libs`{{exec}}
-      1. `make install_protobuf_plugin`{{exec}}
-      1. `make install_demo_grpc`{{exec}}
-      1. `make test_demo_gprc_pact`{{exec}}
-      1. `make show_demo_gprc_pact`{{exec}}
-      1. `make verify_demo_gprc_local`{{exec}}
-      1. `make publish_pacts`{{exec}}
-      1. `make verify_demo_gprc_publish_broker`{{exec}}
-      1. `make verify_demo_gprc_fetch_broker`{{exec}}
+1. `cd ~/pact-ruby-ffi`{{exec}}
+1. `gem update bundler`{{exec}}
+2. `make install`{{exec}}
+3. `make download_libs`{{exec}}
+4. `make install_protobuf_plugin`{{exec}}
+5. `make install_demo_grpc`{{exec}}
+6. `make test_demo_gprc_pact`{{exec}}
+7. `make show_demo_gprc_pact`{{exec}}
+8. `make verify_demo_gprc_local`{{exec}}
+9. `make publish_pacts`{{exec}}
+10. `make verify_demo_gprc_publish_broker`{{exec}}
+11. `make verify_demo_gprc_fetch_broker`{{exec}}
