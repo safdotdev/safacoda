@@ -87,7 +87,7 @@ cd ~/pact-plugins/examples/gRPC/area_calculator/
 echo '==== RUNNING consumer-rust'
 cd consumer-rust
 cargo test
-cat ~/pact-plugins/pact-plugins/examples/gRPC/area_calculator/consumer-rust/target/pacts/grpc-consumer-rust-area-calculator-provider.json | jq .
+cat ~/pact-plugins/examples/gRPC/area_calculator/consumer-rust/target/pacts/grpc-consumer-rust-area-calculator-provider.json | jq .
 ```{{exec}}
 
 
@@ -126,25 +126,24 @@ pact_do_not_track=true ~/bin/pact_verifier_cli -f ../consumer-jvm/build/pacts/gr
 kill $PID
 ```{{exec}}
 
-
 # CSV
 
 ## Setting Up
 
-### Install the CSV Plugin
+### Install the CSV Plugin
 
 - `~/bin/pact-plugin-cli -y install https://github.com/pact-foundation/pact-plugins/releases/tag/csv-plugin-0.0.3`{{exec}}
 
-### Start our tests from here
+### Start our tests from here
 
 - cd ~/pact-plugins/examples/csv
 
 ## Consumers
 
-### JVM
+### JVM
 
 ```sh
-cd ~/pact-plugins/examples/gRPC/area_calculator/
+cd ~/pact-plugins/examples/csv/
 echo '==== RUNNING consumer-jvm'
 cd csv-consumer-jvm
 ./gradlew check
@@ -153,7 +152,7 @@ cd csv-consumer-jvm
 ### Rust
 
 ```sh
-cd ~/pact-plugins/examples/gRPC/area_calculator/
+cd ~/pact-plugins/examples/csv
 echo '==== RUNNING consumer-rust'
 cd csv-consumer-rust
 cargo test -- --test-threads 1
@@ -164,7 +163,7 @@ cargo test -- --test-threads 1
 ### Rust
 
 ```sh
-cd ~/pact-plugins/examples/gRPC/area_calculator/
+cd ~/pact-plugins/examples/csv
 echo '==== RUNNING provider-rust'
 cd csv-provider
 cargo build
