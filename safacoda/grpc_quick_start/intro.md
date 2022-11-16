@@ -147,6 +147,7 @@ cd ~/pact-plugins/examples/csv/
 echo '==== RUNNING consumer-jvm'
 cd csv-consumer-jvm
 ./gradlew check
+cat ~/pact-plugins/examples/csv/csv-consumer-jvm/build/pacts/CsvClient-CsvServer.json | jq .
 ```{{exec}}
 
 ### Rust
@@ -156,6 +157,7 @@ cd ~/pact-plugins/examples/csv
 echo '==== RUNNING consumer-rust'
 cd csv-consumer-rust
 cargo test -- --test-threads 1
+cat ~/pact-plugins/examples/csv/csv-consumer-rust/target/pacts/CsvClient-CsvServer.json | jq .
 ```{{exec}}
 
 ## Providers
@@ -167,7 +169,7 @@ cd ~/pact-plugins/examples/csv
 echo '==== RUNNING provider-rust'
 cd csv-provider
 cargo build
-/target/debug/csv-provider & PID=$!
+./target/debug/csv-provider & PID=$!
 ~/bin/pact_verifier_cli -f ../csv-consumer-jvm/build/pacts/CsvClient-CsvServer.json -p 8080
 ~/bin/pact_verifier_cli -f ../csv-consumer-rust/target/pacts/CsvClient-CsvServer.json -p 8080
 kill $PID
