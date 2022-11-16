@@ -4,18 +4,22 @@
 
 ## Goals
 
-Create a simple gRPC application, in various languages, and test with Pact using the [pact-protobuf-plugin](https://github.com/pactflow/pact-protobuf-plugin) to showcase Pact's multi-protocol approach with the [pact-plugin](https://github.com/pact-foundation/pact-plugins) eco-system
+Test with Pact using the [pact-plugin](https://github.com/pact-foundation/pact-plugins) eco-system
 
-You will:
+1. Test a gRPC Protobuf Area Calculator Example, to show the pact-plugin frameworks custom transport capabilities
+2. Test a CSV Example, to show the pact-plugin frameworks custom content matching ability
+3. Test a Protobuf example, which tests the pact-plugin protobuf file directly, to show the basics of how you could configure your own plugin in the future.
 
-1. Learn about the basics of gRPC
-1. Run your first gRPC consumer and provider in one of several languages, it will be a simple Area Calculator
-1. Write your first gRPC consumer test with Pact using the [pact-protobuf-plugin](https://github.com/pactflow/pact-protobuf-plugin) which will generate a pact file.
-1. Verify your gRPC provider application with Pact, locally
-1. Setup a locally running Pact Broker
-1. Publish your consumer gRPC test to the Pact broker
-1. Verify your gRPC provider application with Pact, using the local pact file, publishing results to the broker
-1. Verify your gRPC provider application with Pact, using the published pact file, publishing results to the broker
+# gRPC Area Calculator Example
+
+This is a simple gRPC example that can receive a shape via gRPC, and return the area for the shape. See the [proto file](proto/area_calculator.proto)
+for more details.
+
+The proto file has a single service method which these examples will be testing:
+
+```protobuf
+  rpc calculate (ShapeMessage) returns (AreaResponse) {}
+```
 
 ## Setting Up
 
@@ -62,6 +66,9 @@ We will use the Pact-Go's helper function, to install the right version for our 
 
 ### JVM
 
+
+The example [JVM consumer project](https://github.com/pact-foundation/pact-plugins/tree/main/examples/gRPC/area_calculator/consumer-jvm) contains a simple consumer in Java generated from Gradle and a JUnit 5 consumer test.
+
 ```sh
 cd ~/pact-plugins/examples/gRPC/area_calculator/
 echo '==== RUNNING consumer-jvm'
@@ -72,6 +79,9 @@ cat ~/pact-plugins/examples/gRPC/area_calculator/consumer-jvm/build/pacts/grpc-c
 
 ### GoLang
 
+The example [Go consumer project](https://github.com/pact-foundation/pact-plugins/tree/main/examples/gRPC/area_calculator/consumer-go) contains a simple consumer and a Go consumer test.
+
+
 ```sh
 cd ~/pact-plugins/examples/gRPC/area_calculator/
 echo '==== RUNNING consumer-go'
@@ -81,6 +91,9 @@ LOG_LEVEL=info ./consumer.test
 ```{{exec}}
 
 ### Rust
+
+The example [Rust consumer project](https://github.com/pact-foundation/pact-plugins/tree/main/examples/gRPC/area_calculator/consumer-rust) contains a simple consumer generated with Prost and a Rust consumer test.
+
 
 ```sh
 cd ~/pact-plugins/examples/gRPC/area_calculator/
@@ -95,6 +108,9 @@ cat ~/pact-plugins/examples/gRPC/area_calculator/consumer-rust/target/pacts/grpc
 
 ### JVM
 
+The [provider project](https://github.com/pact-foundation/pact-plugins/tree/main/examples/gRPC/area_calculator/provider-jvm) contains a Kotlin server and a Java/JUnit 5 test to verify the Pact file from the consumer projects.
+
+It can also be verified using the Rust verifier CLI.
 
 ```sh
 cd ~/pact-plugins/examples/gRPC/area_calculator/
@@ -126,7 +142,17 @@ pact_do_not_track=true ~/bin/pact_verifier_cli -f ../consumer-jvm/build/pacts/gr
 kill $PID
 ```{{exec}}
 
-# CSV
+# CSV Examples
+
+These examples demonstrate using the prototype CSV plugin to support using matching requests and responses
+with CSV content. There are two consumer projects, one written in Java and the other in Rust.
+
+The CSV provider supports the following endpoint:
+* `/reports/{report}.csv`
+
+A `GET` request will return the CSV data for the report, and a `POST` will update it.
+
+Each consumer has two tests, one for each of the types of request to the provider.
 
 ## Setting Up
 
@@ -146,6 +172,9 @@ kill $PID
 
 ### JVM
 
+The Java consumer is run using Gradle, so just run `./gradlew check` in the `csv-consumer-jvm` directory and 
+if the tests pass, a pact file will be created in the `build/pacts` directory.
+
 ```sh
 cd ~/pact-plugins/examples/csv/
 echo '==== RUNNING consumer-jvm'
@@ -155,6 +184,9 @@ cat ~/pact-plugins/examples/csv/csv-consumer-jvm/build/pacts/CsvClient-CsvServer
 ```{{exec}}
 
 ### Rust
+
+The Rust consumer is run using Cargo, so just run `cargo test` in the `csv-consumer-rust` directory, and 
+if the tests pass, a pact file will be created in the `target/pacts` directory.
 
 ```sh
 cd ~/pact-plugins/examples/csv
@@ -179,7 +211,15 @@ cargo build
 kill $PID
 ```{{exec}}
 
-# Protobufs
+# Protobuf Examples
+
+These examples demonstrate using the prototype Protobuf plugin to support matching Protobuf messages. 
+There are two consumer projects, one written in Java and the other in Rust.
+
+The [proto file](https://github.com/pact-foundation/pact-plugins/blob/main/proto/plugin.proto) for the plugin interface is used for these tests.  
+
+Each consumer has two tests, one for the simple InitPluginResponse message and one for the more complex
+InteractionResponse message.
 
 ## Setting Up
 
@@ -200,6 +240,9 @@ kill $PID
 
 ### JVM
 
+The Java consumer is run using Gradle, so just run `./gradlew check` in the `protobuf-consumer` directory and 
+if the tests pass, a pact file will be created in the `build/pacts` directory.
+
 ```sh
 cd ~/pact-plugins/examples/protobuf/
 echo '==== RUNNING consumer-jvm'
@@ -209,6 +252,9 @@ cat ~/pact-plugins/examples/protobuf/protobuf-consumer-jvm/build/pacts/protobuf-
 ```{{exec}}
 
 ### Rust
+
+The Rust consumer is run using Cargo, so just run `cargo test` in the `protobuf-consumer-rust` directory, and 
+if the tests pass, a pact file will be created in the `target/pacts` directory.
 
 ```sh
 cd ~/pact-plugins/examples/protobuf
