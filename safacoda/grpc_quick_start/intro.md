@@ -134,6 +134,10 @@ kill $PID
 
 - `~/bin/pact-plugin-cli -y install https://github.com/pact-foundation/pact-plugins/releases/tag/csv-plugin-0.0.3`{{exec}}
 
+### Install the Pact Verifier
+
+- `~/pact-plugins/scripts/install-verifier-cli.sh `{{exec}}
+
 ### Start our tests from here
 
 - cd ~/pact-plugins/examples/csv
@@ -176,3 +180,56 @@ kill $PID
 ```{{exec}}
 
 # Protobufs
+
+## Setting Up
+
+### Install our Protobuf Plugin
+
+- `~/pact-plugins/scripts/install-plugin-cli.sh`{{exec}}
+- `~/bin/pact-plugin-cli -y install https://github.com/pactflow/pact-protobuf-plugin/releases/latest`{{exec}}
+
+### Install the Pact Verifier
+
+- `~/pact-plugins/scripts/install-verifier-cli.sh `{{exec}}
+
+### Start our tests from here
+
+- cd ~/pact-plugins/examples/protobuf
+
+## Consumers
+
+### JVM
+
+```sh
+cd ~/pact-plugins/examples/protobuf/
+echo '==== RUNNING consumer-jvm'
+cd protobuf-consumer-jvm
+./gradlew check
+cat ~/pact-plugins/examples/protobuf/protobuf-consumer-jvm/build/pacts/protobuf-consumer-protobuf-provider.json | jq .
+```{{exec}}
+
+### Rust
+
+```sh
+cd ~/pact-plugins/examples/protobuf
+echo '==== RUNNING consumer-rust'
+cd protobuf-consumer-rust
+cargo test
+cat ~/pact-plugins/examples/protobuf/protobuf-consumer-rust/target/pacts/protobuf-consumer-rust-protobuf-provider.json | jq .
+```{{exec}}
+
+## Providers
+
+### GoLang
+
+```sh
+cd ~/pact-plugins/examples/protobuf
+echo '==== RUNNING provider-go'
+cd protobuf-provider
+go build main.go
+./main & PID=$!
+timeout --foreground -s TERM 30s bash -c 'while [[ "$(curl -s -o /dev/null -m 3 -L -w ''%{http_code}'' -XPOST -d'{}' http://127.0.0.1:8111)" != "200" ]]; do echo "Waiting for http://127.0.0.1:8111" && sleep 2; done'
+ ~/bin/pact_verifier_cli -f ../protobuf-consumer-rust/target/pacts/protobuf-consumer-rust-protobuf-provider.json -p 8111
+~/bin/pact_verifier_cli -f ../protobuf-consumer-jvm/build/pacts/protobuf-consumer-protobuf-provider.json -p 8111
+kill $PID
+```{{exec}}
