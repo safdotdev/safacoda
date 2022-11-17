@@ -1,6 +1,6 @@
 {
-  "title": "gRPC Area Calculator Quick Start",
-  "description": "Teach the basics of gRPC and testing with Pact Protobuf Plugin",
+  "title": "Pact Plugin Examples",
+  "description": "Showcase example uses of Pact Plugins to test gRPC, Protobuf and CSV's!",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
