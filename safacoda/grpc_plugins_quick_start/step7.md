@@ -8,11 +8,13 @@
 
 ## Verify our running provider locally, with fetched pacts
 
-We will utilise our Pact Broker, by publishing the results from a local verification. We will retrieve pact files from the Pact Broker, rather than providing a file directly.
+We will utilise our Pact Broker, by retrieving pact files from the Pact Broker, rather than providing a file directly.
 
 We use [Consumer Version Selectors](https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors) to determine the pacts to select.
 
 Here we are using `{"matchingBranch":true}` to retrieve pacts, published to the same named branch, as our consumer. This is often used when delivering feature work. See the link above for full possible options.
+
+This will allow us to `publish` our verification results back to the Pact Broker. Traditionally this would be done in CI, and you would use a read/only token locally, to avoid publishing results.
 
 1. Run `make verify_demo_gprc_fetch_broker`{{exec}} to start the provider and run the tests
 
