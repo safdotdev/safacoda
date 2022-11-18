@@ -36,22 +36,38 @@ We _might_ leverage some other Open Source tools along the way, after all, we ar
 
 ## ======== SmartBear OpenStack ===========
 
-- `curl -Ls https://gist.githubusercontent.com/YOU54F/963b15ce7b71f5000b248e7401755f4f/raw`{exec}
-- `make get_oas`{{exec}}                        Downloads a reference OpenAPI specification
-- `make get_swagger_editor`{{exec}}             Downloads the swaggerapi/swagger-editor:next-v5 Docker image
-- `make run_swagger_editor`{{exec}}            Runs the swaggerapi/swagger-editor:next-v5 Docker image <https://github.com/swagger-api/swagger-editor/tree/next#docker> <https://github.com/swagger-api/swagger-editor/issues/3270>
+- `curl -Ls https://gist.githubusercontent.com/YOU54F/963b15ce7b71f5000b248e7401755f4f/raw -o Makefile`{exec}
+- `mkdir -p openapi`{{exec}}                        
+- `make get_oas`{{exec}}                        
+  - Downloads a reference OpenAPI specification
+- `make get_swagger_editor`{{exec}}             
+  - Downloads the swaggerapi/swagger-editor:next-v5 Docker image
+- `make run_swagger_editor`{{exec}}            
+  - Runs the swaggerapi/swagger-editor:next-v5 Docker image <https://github.com/swagger-api/swagger-editor/tree/next#docker> <https://github.com/swagger-api/swagger-editor/issues/3270>
   - Open the [Swagger Editor]({{TRAFFIC_HOST1_8081}}) and check it out
-- `make get_swagger_editor_legacy`{{exec}}      Downloads the swaggerapi/swagger-editor Docker image
-- `make run_swagger_editor_legacy`{{exec}}      Runs the swaggerapi/swagger-editor Docker image <https://github.com/swagger-api/swagger-editor#running-the-image-from-dockerhub>
+- `make get_swagger_editor_legacy`{{exec}}      
+  - Downloads the swaggerapi/swagger-editor Docker image
+- `make run_swagger_editor_legacy`{{exec}}      
+  - Runs the swaggerapi/swagger-editor Docker image <https://github.com/swagger-api/swagger-editor#running-the-image-from-dockerhub>
   - Open the [Swagger Editor]({{TRAFFIC_HOST1_8082}}) and check it out
-- `make run_swagger_ui`{{exec}}                 Runs the swaggerapi/swagger-ui Docker image <https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker>
-- `make get_swagger_ui`{{exec}}                 Downloads the swaggerapi/swagger-ui Docker image
+- `make run_swagger_ui`{{exec}}                 
+  - Runs the swaggerapi/swagger-ui Docker image <https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#docker>
+- `make get_swagger_ui`{{exec}}                 
+  - Downloads the swaggerapi/swagger-ui Docker image
   - Open the [Swagger Editor]({{TRAFFIC_HOST1_8083}}) and check it out
-- `make get_provider_project`{{exec}}           Downloads the pactflow/example-bi-directional-provider-soapui repository
-- `make install_provider_project`{{exec}}       Installs the pactflow/example-bi-directional-provider-soapui project
-- `make run_soap_ui`{{exec}}                   Runs a SoapUI test suite in Docker
-- `provider_start_test_stop`{{exec}}      Runs the provider project and tests with SoapUI
-- `make run_provider_project`{{exec}}           Runs the provider project in a background process and echos the PID
-- `make install_typescript_fetch_pact`{{exec}}  Install the templated project
-- `make test_typescript_fetch_pact`{{exec}}     Test the templated project with Pact
-- `make git_ignore`{{exec}}                    Creates a tailored .gitignore file
+- `make get_provider_project`{{exec}}           
+  - Downloads the pactflow/example-bi-directional-provider-soapui repository
+- `make install_provider_project`{{exec}}       
+  - Installs the pactflow/example-bi-directional-provider-soapui project
+- `make run_soap_ui`{{exec}}                   
+  - Runs a SoapUI test suite in Docker
+- `provider_start_test_stop`{{exec}}      
+  - Runs the provider project and tests with SoapUI
+- `make run_provider_project`{{exec}}           
+  - Runs the provider project in a background process and echos the PID
+- `make install_typescript_fetch_pact`{{exec}}  
+  - Install the templated project
+- `make test_typescript_fetch_pact`{{exec}}     
+  - Test the templated project with Pact
+- `make git_ignore`{{exec}}                    
+  - Creates a tailored .gitignore file
