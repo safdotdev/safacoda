@@ -1,0 +1,36 @@
+{
+  "title": "Scratchpad",
+  "description": "Testing SmartBear OpenSource Tools",
+  "difficulty": "Beginner",
+  "time": "15",
+  "details": {
+    "steps": [
+    ],
+    "intro": {
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": []
+    },
+    "files": []
+  },
+  "environment": {
+    "hidefinish": true,
+    "uilayout": "vscode-terminal-split",
+    "dashboards": [
+      { "name": "Postgres DB", "port": 5432 },
+      { "name": "Pact Broker", "port": 8000 }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  },
+  "interface": {
+    "layout": "ide"
+  }
+
+}
