@@ -2,6 +2,8 @@
 
 echo "Installing apt dependencies"
 apt --yes install jq && \
+echo "setup node 16" && \
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && source ~/.bashrc && nvm install 16 && \
 echo "Installing OpenJDK 11" && \
 mkdir -p /usr/java && \
 cd /usr/java && \

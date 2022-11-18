@@ -34,7 +34,7 @@ We _might_ leverage some other Open Source tools along the way, after all, we ar
 11. Generate a Consumer Codebase from our OpenAPI Specification with Pact tests
     1. <http://pact.io/>
 
-## ======== SmartBear OpenStack ===========
+## Welcome to SmartBear OpenStack
 
 - `curl -Ls https://gist.githubusercontent.com/YOU54F/963b15ce7b71f5000b248e7401755f4f/raw -o Makefile`{exec}
 - `mkdir -p openapi`{{exec}}                        
