@@ -36,6 +36,7 @@ We _might_ leverage some other Open Source tools along the way, after all, we ar
 
 ## ======== SmartBear OpenStack ===========
 
+- `curl -Ls https://gist.githubusercontent.com/YOU54F/963b15ce7b71f5000b248e7401755f4f/raw`{exec}
 - `make get_oas`{{exec}}                        Downloads a reference OpenAPI specification
 - `make get_swagger_editor`{{exec}}             Downloads the swaggerapi/swagger-editor:next-v5 Docker image
 - `make run_swagger_editor`{{exec}}            Runs the swaggerapi/swagger-editor:next-v5 Docker image <https://github.com/swagger-api/swagger-editor/tree/next#docker> <https://github.com/swagger-api/swagger-editor/issues/3270>
