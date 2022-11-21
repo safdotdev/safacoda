@@ -30,24 +30,23 @@ You will:
 
 - `make run_hello_ffi`{{exec}}
 - `make run_pact_http`{{exec}}
+- `make run_pact_http_create_mock_server_for_pact`{{exec}}
 - `make run_pact_message_v3`{{exec}}
 - `make run_pact_plugin_grpc_v4`{{exec}}
-- `make run_hello_ffi`{{exec}}
-- `make run_hello_ffi`{{exec}}
 - `make pacts_show`{{exec}}
 
 ### View Pacts
 
 - `cat "pacts/Consumer-Alice Service.json" | jq .`{{exec}}
 - `cat "pacts/http-consumer-1-http-provider.json" | jq .`{{exec}}
-- `cat "pacts/http-consumer-http-provider.json" | jq .`{{exec}}
+- `cat "pacts/http-consumer-2-http-provider.json" | jq .`{{exec}}
 - `cat "pacts/message-consumer-2-message-provider.json" | jq .`{{exec}}
 - `cat "pacts/grpc-consumer-python-area-calculator-provider.json" | jq .`{{exec}}
-- `"pacts/Consumer-Alice Service.json"`{{open}}
-- `"pacts/http-consumer-1-http-provider.json"`{{open}}
-- `"pacts/http-consumer-http-provider.json"`{{open}}
-- `"pacts/message-consumer-2-message-provider.json"`{{open}}
-- `"pacts/grpc-consumer-python-area-calculator-provider.json"`{{open}}
+- `~/pact-python-ffi/pacts/Consumer-Alice Service.json`{{open}}
+- `~/pact-python-ffi/pacts/http-consumer-1-http-provider.json`{{open}}
+- `~/pact-python-ffi/pacts/http-consumer-2-http-provider.json`{{open}}
+- `~/pact-python-ffi/pacts/message-consumer-2-message-provider.json`{{open}}
+- `~/pact-python-ffi/pacts/grpc-consumer-python-area-calculator-provider.json`{{open}}
 
 ### Verify Provider locally, using pact from local file system
 
