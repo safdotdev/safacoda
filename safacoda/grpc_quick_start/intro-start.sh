@@ -2,7 +2,7 @@
 
 echo "Downloading pact plugins repo"
 git clone --depth 1 --shallow-submodules https://github.com/pact-foundation/pact-plugins.git
-add-apt-repository --yes ppa:longsleep/golang-backports && apt update && \
+sudo -E add-apt-repository --yes ppa:longsleep/golang-backports && apt update --yes && \
 echo "Installing apt dependencies & golang"
 apt --yes install curl g++ gcc autoconf automake bison libc6-dev \
         libffi-dev libgdbm-dev libncurses5-dev libsqlite3-dev libtool \
