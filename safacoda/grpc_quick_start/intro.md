@@ -10,9 +10,28 @@ Test with Pact using the [pact-plugin](https://github.com/pact-foundation/pact-p
 2. Test a CSV Example, to show the pact-plugin frameworks custom content matching ability
 3. Test a Protobuf example, which tests the pact-plugin protobuf file directly, to show the basics of how you could configure your own plugin in the future.
 
+## Killercoda Usage Notes
+
+There is a 60 minute time limit for sessions. You can continue this offline (although you can't continue your progress, from the Killercoda Environment)
+
+> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab, but it's
+> already planned for a future update. Till then, all exec will be automatically switched to copy when using the visual editor, so you should switch to a tab when prompted
+
+1. Switch to Tab 1
+2. Clicking on the code block when prompted
+3. This should create a new file in your workspace
+4. You can switch to the editor tab
+5. Click the filename above to copy.
+6. Ensure the `editor` tab is open
+7. press `ctrl+p` or `command+p` to search for a file
+8. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+9. You will now be able to see your newly created file
+
+We'll use this approach moving forward as we progress through the workshop.
+
 # gRPC Area Calculator Example
 
-This is a simple gRPC example that can receive a shape via gRPC, and return the area for the shape. See the [proto file](proto/area_calculator.proto)
+This is a simple gRPC example that can receive a shape via gRPC, and return the area for the shape. See the `area_calculator.proto` file
 for more details.
 
 The proto file has a single service method which these examples will be testing:
