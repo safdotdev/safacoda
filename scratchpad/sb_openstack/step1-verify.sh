@@ -1,1 +1,1 @@
-[ -d smartbear-openstack ] && echo "done"
+[ -d openstack ] && echo "done"
