@@ -1,1 +1,1 @@
-[ -d openstack ] && echo "done"
+[ -f ~/openstack/Makefile ] && echo "done"

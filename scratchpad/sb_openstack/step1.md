@@ -8,11 +8,11 @@ Running the following command will
 - Retrieve an example OpenAPI description from [GitHub](https://github.com/SmartBear-DevRel/swaggerhub-pactflow/blob/main/oas/swagger.yaml)
 - Setup a `.gitgnore` file used to exclude some files from being commited to source control.
 
-`make setup`{{exec}}
+👉🏼 `make setup`{{exec}}
 
 You can check the contents of the OpenAPI description with the following command
 
-`cat openapi/openapi.yaml`{{exec}}
+👉🏼 `cat openapi/openapi.yaml`{{exec}}
 
 It isn't so easy to read from a terminal, but that will lead us onto our first tool. Swagger Editor.
 
