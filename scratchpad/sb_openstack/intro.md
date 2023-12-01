@@ -16,7 +16,7 @@ See how far we can get with SmartBears Open Source tools, from an OpenAPI defini
 
 ## Ready to start?
 
-See the terminal on the right-hand side? It's currently installed NodeJS and Java which are used in this demo. 
+See the terminal on the right-hand side? It's currently installing NodeJS and Java which are used in this demo.
 
 Please wait until it's finished and you get a message saying good to go :)! Thanks and enjoy.
 
