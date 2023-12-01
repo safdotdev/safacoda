@@ -1,0 +1,1 @@
+[ -d openstack ] && echo "done"

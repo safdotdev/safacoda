@@ -1,1 +1,1 @@
-[ -d openstack ] && echo "done"
+[ -f ~/openstack/openapi/openapi.yaml ] && echo "done"

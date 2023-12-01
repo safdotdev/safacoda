@@ -2,7 +2,7 @@
   "title": "Scratchpad",
   "description": "Testing SmartBear OpenSource Tools",
   "difficulty": "Beginner",
-  "time": "15",
+  "time": "60",
   "details": {
     "steps": [
       {
@@ -13,7 +13,8 @@
     ],
     "intro": {
       "text": "intro.md",
-      "foreground": "intro-start.sh"
+      "foreground": "intro-start.sh",
+      "verify": "intro-verify.sh"
     },
     "finish": {
       "text": "finish.md"
