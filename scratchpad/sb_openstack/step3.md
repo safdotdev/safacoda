@@ -50,7 +50,7 @@ The source code is publicly hosted on GitHub, and you can start contributing to 
 
 ## How can I get my hands on it?
 
-### Hosted - Swagger Editor
+### Hosted - Swagger Editor
 
 Swagger Editor is hosted by SmartBear and served for free at [https://editor.swagger.io](https://editor.swagger.io).
 
