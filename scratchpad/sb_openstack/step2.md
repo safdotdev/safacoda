@@ -85,8 +85,8 @@ We will then mount a volume containing our OpenAPI description into the Docker c
 Finally we will pass an environment variable, telling the editor, to load our sample OpenAPI description by default.
 
 1. 👉🏼 `make do_swagger_editor`{{exec}}
-2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8001}})
-3. If running on your local machine, visit `http://localhost:8001`
+2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8081}})
+3. If running on your local machine, visit `http://localhost:8081`
    1. 👉🏼 `make view do_swagger_editor`{{exec}}
 
 ### Locally - Swagger Editor Next
@@ -96,9 +96,16 @@ We will run Swagger Editor locally with Docker, pulling the image from Dockerhub
 We don't have the ability to pass in environment variables, with the Docker image, so once we have our running container, we will load the file manually.
 
 1. 👉🏼 `make do_swagger_editor_next`{{exec}}
-2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8002}})
-3. If running on your local machine, visit `http://localhost:8002`
+2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8082}})
+3. If running on your local machine, visit `http://localhost:8082`
    1. 👉🏼 `make view do_swagger_editor_next`{{exec}}
 4. Import our sample OpenAPI Description
       1. File -> Import File
       2. Select the file 👉🏼 `openapi/openapi.yaml`
+
+### Check
+
+Before moving to the next step, check the following:
+
+1. You have been able to run `swagger-editor` locally
+2. You have been able to run `swagger-editor-next` locally
