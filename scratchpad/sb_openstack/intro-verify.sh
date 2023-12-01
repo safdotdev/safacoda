@@ -1,1 +1,0 @@
-[ -f ~/openstack/Makefile ] && echo "done"

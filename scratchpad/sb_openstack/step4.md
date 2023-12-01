@@ -1,71 +1,37 @@
-## Document
+## Design - Governance & Standardisation
 
-Now that we have design our OpenAPI file, describing our API, we want to share it with others, there are a couple of tools within SmartBears open-source toolset that can provide this.
+It would be prudent of us to design API' that are secure, consistent and useful.
 
-We saw one in use in the Swagger Editor, on the right-hand side, and we will introduce a second into the mix. Which one you choose may depend on a variety of reasons, so I would advise reading the documentation to find out more.
+Stoplight Spectral provides an open-source API style guide enforcer and linter which can be used as a generic ruleset engine on any JSON or YAML data, but was built with OpenAPI, AsyncAPI, and JSON Schema in mind. 
 
-## Swagger UI
+You can use Spectral rules to target API descriptions for quality improvement or enforce API Style Guide rules, such as naming conventions for OpenAPI models or prohibiting integers in URLs.
 
-[Swagger UI](https://swagger.io/tools/swagger-ui/) allows anyone — be it your development team or your end consumers — to visualize and interact with the API’s resources without having any of the implementation logic in place. It’s automatically generated from your OpenAPI (formerly known as Swagger) Specification, with the visual documentation making it easy for back end implementation and client side consumption.
+API description formats like OpenAPI can be permissive and vague. Beginner API designers can struggle to know what to do, and experienced API designers can easily forget.
 
-- Dependency Free
-  - Dependency FreeThe UI works in any development environment, be it locally or in the web
-- Human Friendly
-  - Allow end developers to effortlessly interact and try out every single operation your API exposes for easy consumption
-- Easy to Navigate
-  - Quickly find and work with resources and endpoints with neatly categorized documentation
-- All Browser Support
-  - Cater to every possible scenario with Swagger UI working in all major browsers
-- Fully Customizable
-  - Style and tweak your Swagger UI the way you want with full source code access
-- Complete OAS Support
-  - Visualize APIs defined in Swagger 2.0 or OAS 3.\*
+It's easy to create valid description documents that are not very useful, and end up looking broken in documentation tools, or not providing enough validation keywords to be useful for contract testing. Spectral helps you follow best practices in order to create high-quality API descriptions.
 
-## Stoplight Elements
+Spectral can be downloaded as a CLI binary for macOS, Linux or Windows, or installed as an NPM/Yarn package with a CLI and a JavaScript API. 
 
-[Stoplight Elements](https://stoplight.io/open-source/elements) provides Open-source API documentation building blocks which can be used to build highly customized, interactive API Docs with embeddable web components generated from OpenAPI documents
+You can bake it into your existing tooling, run it in Continuous Integration, use it in any workflow you like. Let's take a look at one of them.
 
-Whether you have an existing developer portal, or are working locally, you can use these components to add automatically-generated API reference documentation that fits in seamlessly.
+## Lint the OpenAPI document with Stoplight Spectral
 
-- Delightful developer experience.
-  - Help developers find and consume APIs faster with a customizable left navigation and three-column layout.
-- Powered by standards.
-  - Leverage OpenAPI and JSON Schema to create beautiful, templated documents for even the most dynamic payloads, and encourage reuse with $ref.
-- Interactive API console.
-  - Accelerate developer onboarding by letting them test requests and responses within the documentation.
-- Code samples.
-  - Streamline Integration by providing code samples in popular languages like Curl, Python, Ruby, Java, and many more.
-- Enhanced markdown support.
-  - Provide engaging guides and descriptions with Stoplight-flavored Markdown that gives the ability to add tabs, callouts, embed JSON examples, and much more.
-- Easy to set up.
-  - No build steps. Get started in minutes. Built on web components, it's as easy as adding a tag within your project, and can be used with any framework.
+Spectral, being a generic YAML/JSON linter, needs a [ruleset](https://github.com/stoplightio/spectral?tab=readme-ov-file#1-create-a-local-ruleset) to lint files. A ruleset is a JSON, YAML, or JavaScript/TypeScript file (often the file is called .spectral.yaml for a YAML ruleset) that contains a collection of rules, which can be used to lint other JSON or YAML files such as an API description.
 
-### Run it Locally - Swagger UI
+First we define our local ruleset.
 
-We will run Swagger UI locally with Docker, pulling the image from Dockerhub.
+We then run Stoplight Spectral locally with Docker, pulling the image from Dockerhub.
 
-We will then mount a volume containing our OpenAPI description into the Docker container.
+We tell spectral where to locate the OpenAPI description and the location of the ruleset
 
-Finally we will pass an environment variable, telling the editor, to load our sample OpenAPI description by default.
+   1. `make create_spectral_default_ruleset`{{exec}}
+   2. `make openapi_lint_spectral`{{exec}}
 
-1. Swagger UI
-   1. `make do_swagger_ui`
-2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8083}})
-3. If running on your local machine, visit `http://localhost:8083`
-   1. 👉🏼 `make view do_swagger_ui`{{exec}}
-
-### Run it Locally - Stoplight Elements
-
-There are multiple ways to run Stoplight elements, in our example, we have a component in a html page, and we load in the Elements library via a script tag.
-
-We are passing in a URL to a hosted OpenAPI description, to save having to serve the file locally.
-
-1. Stoplight Elements
-   1. `make openapi_docs_elements`
+Any violations are shown here, allowing us to rectify the changes, and re-validate. This ability to provide fast-feedback can be used at authoring time, as well as being integrated into Continuous Integration, meaning that its caught early on rather than causing issues to consumers and users of the API description.
 
 ### Check
 
 Before moving to the next step, check the following:
 
-1. You have been able to run `swagger-ui` locally
-2. You have been able to run `stoplight-elements` locally
+1. You have been able to run `spectral` locally
+2. You noted some OpenAPI validation errors

@@ -1,0 +1,1 @@
+[ -f ~/openstack/openapi/openapi.yaml ] && echo "done"

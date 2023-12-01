@@ -1,1 +1,1 @@
-[ -f ~/openstack/openapi/openapi.yaml ] && echo "done"
+[ -f ~/openstack/Makefile ] && echo "done"

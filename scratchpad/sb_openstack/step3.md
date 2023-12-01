@@ -1,37 +1,111 @@
-## Design - Governance & Standardisation
+## Design - Swagger Editor
 
-It would be prudent of us to design API' that are secure, consistent and useful.
+In our last step, we pulled in an API Description, that was previously created. This document is stored in `openapi/openapi.yaml`.
 
-Stoplight Spectral provides an open-source API style guide enforcer and linter which can be used as a generic ruleset engine on any JSON or YAML data, but was built with OpenAPI, AsyncAPI, and JSON Schema in mind. 
+We mentioned that consuming it from the command line wasn't the nicest experience. What if we had a nicer way to view and edit our API description? Even better still, what if we could get feedback to ensure that the description
+we are creating adheres to an OpenAPI specification. 
 
-You can use Spectral rules to target API descriptions for quality improvement or enforce API Style Guide rules, such as naming conventions for OpenAPI models or prohibiting integers in URLs.
+Swagger Editor allows you to describe, and document your API in a free open source editor which supports multiple API specifications and serialization formats.
 
-API description formats like OpenAPI can be permissive and vague. Beginner API designers can struggle to know what to do, and experienced API designers can easily forget.
+It offers an easy way to get started with the OpenAPI Specification (formerly known as Swagger) as well as the AsyncAPI specification, with support for Swagger 2.0, OpenAPI 3.*, and AsyncAPI 2.* versions.
 
-It's easy to create valid description documents that are not very useful, and end up looking broken in documentation tools, or not providing enough validation keywords to be useful for contract testing. Spectral helps you follow best practices in order to create high-quality API descriptions.
+## Flavours
 
-Spectral can be downloaded as a CLI binary for macOS, Linux or Windows, or installed as an NPM/Yarn package with a CLI and a JavaScript API. 
+There are two flavours of Swagger Editor. We will introduce both.
 
-You can bake it into your existing tooling, run it in Continuous Integration, use it in any workflow you like. Let's take a look at one of them.
+### Swagger Editor
 
-## Lint the OpenAPI document with Stoplight Spectral
+- Runs Anywhere
+  - The Editor works in any development environment, be it locally or in the web
+- Smart Feedback
+  - Validate your syntax for OAS-compliance as you write it with concise feedback and error handling
+- Instant Visualization
+  - Render your API specification visually and interact with your API while still defining it
+- Intelligent Auto-completion
+  - Write syntax faster with a smart and intelligent auto-completion
+- Fully Customizable
+  - Easy to configure and customize anything, from line-spacing to themes
+- All About Your Build
+  - Generate server stubs and client libraries for your API in every popular language
 
-Spectral, being a generic YAML/JSON linter, needs a [ruleset](https://github.com/stoplightio/spectral?tab=readme-ov-file#1-create-a-local-ruleset) to lint files. A ruleset is a JSON, YAML, or JavaScript/TypeScript file (often the file is called .spectral.yaml for a YAML ruleset) that contains a collection of rules, which can be used to lint other JSON or YAML files such as an API description.
+### The Next Swagger Editor
 
-First we define our local ruleset.
+![newSwaggerEditor](https://static1.smartbear.co/swagger/media/blog/swagger-editor-blog_575x300.png?ext=.png)
 
-We then run Stoplight Spectral locally with Docker, pulling the image from Dockerhub.
+The next Swagger Editor, which we will refer to throughout this tutorial as swagger editor next, bring all the features from the original Swagger Editor plus support for AsyncAPI and JSON Schema.
 
-We tell spectral where to locate the OpenAPI description and the location of the ruleset
+This ground-up rewrite builds upon our multi-specification core, [Swagger ApiDOM](http://github.com/swagger-api/apidom), which provides a single, unifying structure for describing APIs across API description language and serialization formats. We'll share more information and context on Swagger ApiDOM soon, so stay tuned!
 
-   1. `make create_spectral_default_ruleset`{{exec}}
-   2. `make openapi_lint_spectral`{{exec}}
+You can read more about the next Swagger Editor [here] in a blog post by fellow SmartBear Developer Relations member Frank Kilcommins, who is our resident API technical evangelist.
 
-Any violations are shown here, allowing us to rectify the changes, and re-validate. This ability to provide fast-feedback can be used at authoring time, as well as being integrated into Continuous Integration, meaning that its caught early on rather than causing issues to consumers and users of the API description.
+## Contributing
+
+![OpenSourceSwagger](https://static1.smartbear.co/swagger/media/images/homepage/open-source-swagger.svg)
+
+The Swagger Editor is just one open source project in the thousands that exist in the Swagger ecosystem.
+
+The source code is publicly hosted on GitHub, and you can start contributing to the open source Swagger Editor project.
+
+[View Swagger on GitHub](https://github.com/swagger-api)
+
+## How can I get my hands on it?
+
+### Hosted - Swagger Editor
+
+Swagger Editor is hosted by SmartBear and served for free at [https://editor.swagger.io](https://editor.swagger.io).
+
+👉🏼 [https://editor.swagger.io](https://editor.swagger.io).
+
+1. Load our sample OpenAPI document from `openapi/openapi.yaml`
+      1. File -> Import URL
+      2. Paste the url 👉🏼 `https://raw.githubusercontent.com/smartbear-devrel/swaggerhub-pactflow/main/oas/swagger.yaml`
+2. If you are running locally, you can import from File
+      1. File -> Import File
+      2. Select the file 👉🏼 `openapi/openapi.yaml`
+
+### Hosted - Swagger Editor Next
+
+👉🏼 [https://editor-next.swagger.io](https://editor-next.swagger.io).
+
+By default, Swagger Editor Next loads an AsyncAPI definition.
+
+1. Load our sample OpenAPI document from `openapi/openapi.yaml`,
+      1. File -> Import URL
+      2. Paste the url 👉🏼 `https://raw.githubusercontent.com/smartbear-devrel/swaggerhub-pactflow/main/oas/swagger.yaml`
+2. If you are running locally, you can import from File
+      1. File -> Import File
+      2. Select the file 👉🏼 `openapi/openapi.yaml`
+
+### Locally - Swagger Editor
+
+We will run Swagger Editor locally with Docker, pulling the image from Dockerhub.
+
+We will then mount a volume containing our OpenAPI description into the Docker container.
+
+Finally we will pass an environment variable, telling the editor, to load our sample OpenAPI description by default.
+
+1. 👉🏼 `make do_swagger_editor`{{exec}}
+2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8081}})
+3. If running on your local machine, visit `http://localhost:8081`
+   1. 👉🏼 `make view do_swagger_editor`{{exec}}
+
+### Locally - Swagger Editor Next
+
+We will run Swagger Editor locally with Docker, pulling the image from Dockerhub.
+
+We don't have the ability to pass in environment variables, with the Docker image, so once we have our running container, we will load the file manually.
+
+1. 👉🏼 `make do_swagger_editor_next`{{exec}}
+2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8082}})
+3. If running on your local machine, visit `http://localhost:8082`
+   1. 👉🏼 `make view do_swagger_editor_next`{{exec}}
+4. Import our sample OpenAPI Description
+      1. File -> Import File
+      2. Select the file 👉🏼 `openapi/openapi.yaml`
 
 ### Check
 
 Before moving to the next step, check the following:
 
-1. You have been able to run `spectral` locally
-2. You noted some OpenAPI validation errors
+1. You have been able to run `swagger-editor` locally
+2. You have been able to run `swagger-editor-next` locally
