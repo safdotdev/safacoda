@@ -87,7 +87,7 @@ Finally we will pass an environment variable, telling the editor, to load our sa
 1. 👉🏼 `make do_swagger_editor`{{exec}}
 2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8081}})
 3. If running on your local machine, visit `http://localhost:8081`
-   1. 👉🏼 `make view do_swagger_editor`{{exec}}
+   1. 👉🏼 `make view_swagger_editor`{{exec}}
 
 ### Locally - Swagger Editor Next
 
@@ -98,7 +98,7 @@ We don't have the ability to pass in environment variables, with the Docker imag
 1. 👉🏼 `make do_swagger_editor_next`{{exec}}
 2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8082}})
 3. If running on your local machine, visit `http://localhost:8082`
-   1. 👉🏼 `make view do_swagger_editor_next`{{exec}}
+   1. 👉🏼 `make view_swagger_editor_next`{{exec}}
 4. Import our sample OpenAPI Description
       1. File -> Import File
       2. Select the file 👉🏼 `openapi/openapi.yaml`

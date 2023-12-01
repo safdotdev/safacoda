@@ -49,10 +49,10 @@ We will then mount a volume containing our OpenAPI description into the Docker c
 Finally we will pass an environment variable, telling the editor, to load our sample OpenAPI description by default.
 
 1. Swagger UI
-   1. `make do_swagger_ui`
+   1. `make do_swagger_ui`{{exec}}
 2. If running in the Killercoda tutorial, click [here]({{TRAFFIC_HOST1_8083}})
 3. If running on your local machine, visit `http://localhost:8083`
-   1. 👉🏼 `make view do_swagger_ui`{{exec}}
+   1. 👉🏼 `make view_swagger_ui`{{exec}}
 
 ### Run it Locally - Stoplight Elements
 
@@ -60,8 +60,12 @@ There are multiple ways to run Stoplight elements, in our example, we have a com
 
 We are passing in a URL to a hosted OpenAPI description, to save having to serve the file locally.
 
-1. Stoplight Elements
-   1. `make openapi_docs_elements`
+1. If running in the Killercoda tutorial, find the file `openstack/elements.html`
+   1. Right click on the file in the editor explorer view
+   2. Select `Download`
+   3. Open the downloaded file, it should open in your preferred browser.
+2. If running on your local machine
+   1. `make openapi_docs_elements`{{exec}}
 
 ### Check
 
