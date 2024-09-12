@@ -285,6 +285,10 @@ DSL's, following recommend Pact best practices, including the usage of Provider 
 
 By refining the inputs you provide to PactFlow AI, hopefully you can find ways to tailor it to your particular use case.
 
+You've now seen PactFlow AI generate Pact consumer tests. We look forward to bringing you further Pact DSL support in other languages such as Python / .NET & GoLang.
+
+Hopefully we have powered your imagination, and we would love to know both how you get using using `pactflow-ai` today, and what you want to see in the future!
+
 ### Check
 
 Before moving to the next step, check the following:
@@ -296,4 +300,4 @@ Before moving to the next step, check the following:
 1. You have been able to run `npm run test:pact` to execute the generated Pact tests
 1. You have been able to generate a pact file in the `pacts` folder
 
-In our next step, we will look at similar scenario with a Java application.
+<--- In our next step, we will look at similar scenario with a Java application. --->

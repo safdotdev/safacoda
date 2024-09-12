@@ -17,7 +17,13 @@ Change directory into our application
 
 This project already has an existing Pact test, you can run it.
 
-`./gradlew clean test -i`{{exec}}
+It's located at `src/test/java/com/example/products/ProductsPactFlowTest.java`
+
+👉🏼 `./gradlew clean test -i`{{exec}}
+
+When run it will output a Pact file to `build/pacts`
+
+👉🏼 `cat build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json | jq .`
 
 ## client-code
 
@@ -26,13 +32,13 @@ your client code, without the need for an OpenAPI description.
 
 ```sh
 pactflow-ai generate code ./src/main/java/com/example/products/ProductClient.java \
-  --output ./test/java/com/example/products/ProductsPactFlowAiTest.java \
+  --output ./src/test/java/com/example/products/ProductsPactFlowAiTest.java \
   --language java
 ```{{exec}}
 
-👉🏼 Check the generated Pact test at `test/java/com/example/products/ProductsPactFlowAiTest.java`
+👉🏼 Check the generated Pact test at `src/test/java/com/example/products/ProductsPactFlowAiTest.java`
 
-You can compare it with the existing test that was manually created `test/java/com/example/products/ProductsPactFlowTest.java` to compare
+You can compare it with the existing test that was manually created `src/test/java/com/example/products/ProductsPactFlowTest.java` to compare
 
 👉🏼 `./gradlew clean test -i`{{exec}}
 

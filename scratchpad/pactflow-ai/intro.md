@@ -29,10 +29,10 @@ Leverage [PactFlow AI](https://docs.pactflow.io/docs/ai) in several scenarios
       2. Improve the output by providing it the client code.
    3. `client-code`
       1. Generate Pact tests from client code.
-4. Lets create some tests - Java
+<!-- 4. Lets create some tests - Java
    1. Grab the Java example project
    2. `client-code`
-      1. Generate Pact tests from client code.
+      1. Generate Pact tests from client code. -->
 
 ## Ready to start?
 
