@@ -36,9 +36,70 @@ Leverage [PactFlow AI](https://docs.pactflow.io/docs/ai) in several scenarios
 
 ## Ready to start?
 
-See the terminal on the right-hand side? It's currently installing NodeJS and Java which are used in this demo.
+Pick your preferred programming language, or multiple if you want to mix and match.
 
-Please wait until it's finished and you get a message saying good to go!
+### Setup your required programming language
+
+Click on the code below, to run the installer in your integrated terminal.
+
+Please wait until it's finished and then you can continue!
+
+#### Java
+
+- Version 17.x
+
+```
+apt install openjdk-17-jdk openjdk-17-jre
+```{{exec}}
+
+#### Node
+
+- Version 20.x
+
+```
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+```{{exec}}
+
+#### .NET
+
+- Version 8.x
+
+```
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-8.0
+```{{exec}}
+
+#### Golang
+
+- Latest
+
+```
+release=$(wget -qO- "https://golang.org/VERSION?m=text" | awk '/^go/{print $0}')
+release_file="${release}.linux-amd64.tar.gz"
+tmp=$(mktemp -d)
+cd $tmp || exit 1
+curl -OL https://go.dev/dl/$release_file
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf $release_file
+rm -rf $tmp
+cd ~
+```{{exec}}
+
+#### Python
+
+- Version 3.11
+
+```
+add-apt-repository -y ppa:deadsnakes/ppa
+apt-get install python3.11 -y
+```{{exec}}
+
+## Now, you can begin
+
 
 Thanks and enjoy.
 
