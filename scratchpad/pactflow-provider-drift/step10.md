@@ -11,25 +11,77 @@ Let's see it in action.
 
 ## Provider breaking changes
 
-Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute}}
+Change directories into `cd /root/example-provider`{{execute}}
 
-1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key `example-bi-directional-provider-dredd/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{copy}} at lines 24/38/57/89/106/117/118
+1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 30/53/92/115/126/127
 
     1. `git add . && git commit -m 'feat: remove price'`{{execute}}
-    2. `npm t`{{execute}}
-    3. `npm run publish`{{execute}}
-    4. `npm run can-i-deploy`{{execute}}
+    2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
+
+```
+# Capture the exit code from Drift
+EXIT_CODE=$?
+
+# Find the generated verification bundle
+VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
+
+pact pactflow publish-provider-contract \
+openapi.yaml \
+  --provider "my-product-api" \
+  --provider-app-version "$(git rev-parse --short HEAD)" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)" \
+  --content-type application/yaml \
+  --verification-exit-code $EXIT_CODE \
+  --verification-results "$VERIFICATION_FILE" \
+  --verification-results-content-type application/vnd.smartbear.drift.result \
+  --verifier drift
+```{{execute}}
+
+    3. Run Can I Deploy to check if it's safe to deploy this change to production:
+
+```
+pact broker can-i-deploy \
+  --pacticipant "my-product-api" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
 
     OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `price` field? PactFlow knows all of the consumers needs down to the field level. Because no consumer uses `price` this is a safe operation.
 
     Reset our change `git reset --hard origin/master`{{execute}}
 
-2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{copy}} at lines 58/105/113/114
+2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 31/54/93/114/122/123
 
     1. `git add . && git commit -m 'feat: remove name'`{{execute}}
-    2. `npm t`{{execute}}
-    3. `npm run publish`{{execute}}
-    4. `npm run can-i-deploy`{{execute}}
+    2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
+
+```
+# Capture the exit code from Drift
+EXIT_CODE=$?
+
+# Find the generated verification bundle
+VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
+
+pact pactflow publish-provider-contract \
+openapi.yaml \
+  --provider "my-product-api" \
+  --provider-app-version "$(git rev-parse --short HEAD)" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)" \
+  --content-type application/yaml \
+  --verification-exit-code $EXIT_CODE \
+  --verification-results "$VERIFICATION_FILE" \
+  --verification-results-content-type application/vnd.smartbear.drift.result \
+  --verifier drift
+```{{execute}}
+
+    3. Run Can I Deploy to check if it's safe to deploy this change to production:
+
+```
+pact broker can-i-deploy \
+  --pacticipant "my-product-api" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
 
     You should have an output like below
 
@@ -78,8 +130,25 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
 
     1. `git add . && git commit -m 'feat: add foo'`{{execute}}
     2. `npm t`{{execute}}
-    3. `npm run publish`{{execute}}
-    4. `npm run can-i-deploy`{{execute}}
+    3. Publish the pact files
+
+```
+pact broker publish \
+pacts \
+  --consumer-app-version "$(git rev-parse --short HEAD)" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)"
+```{{execute}}
+
+
+    4. Run Can I Deploy to check if it's safe to deploy this change to production:
+
+```
+pact broker can-i-deploy \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
+
 
     You shouldn't be able to deploy!
 

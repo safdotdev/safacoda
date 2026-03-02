@@ -114,6 +114,12 @@ To generate our pact file, we have created a few helper functions to inspect Mou
 
 - `example-bi-directional-consumer-mountebank/test/mountebankSerialiser.js`{{copy}}
 
+Open the `mountebankSerialiser.js` file and update line 2 to reference the name of the provider you created in step 4:
+
+```js
+const provider = "my-product-api";
+```
+
 To extract the mock information, we have a few choices (see http://www.mbtest.org/docs/api/mocks). In this case, when we start Mountebank, we actually pass the `--debug` [flag](http://www.mbtest.org/docs/commandLine#start) giving us a really important behaviour:
 
 > Include a `matches` array with each stub in the body of a GET imposter response for debugging why a particular stub did or did not match a request. Every time a response from the stub is used, a match will be added containing the request, the response configuration, the actual generated response (even if it is proxied), and the overall processing time.
