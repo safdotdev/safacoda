@@ -87,9 +87,9 @@ Drift is available as a standalone binary, and is language agnostic. It can be u
 
 The simplest way to try Drift without installing anything globally is with `npx` (required node):
 
-`npx @pactflow/drift --help`{{execute}}
+`npx -y @pactflow/drift --help`{{execute}}
 
-If you prefer a global install (available across shells), install from npm:
+If you prefer a global install (available across shells), install from npm, please do so, for this tutorial
 
 `npm install -g @pactflow/drift`{{execute}}
 
@@ -99,7 +99,7 @@ If you don't use node, or need more options, see our [Installation Guide](https:
 
 #### Create your First Test Suite
 
-Create a file named `drift.yaml`. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+Create a file named `drift.yaml` in the `example-provider` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
 
 ```
 # yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
@@ -193,6 +193,8 @@ If a test fails, you'll see a Failures section with details about what went wron
 
 ### Create and Run Tests for the Product API
 
+Lets test our actual Product API implementation using Drift. We will create a test suite that verifies the API implementation against the OAS document we created in Step 2.
+
 When using a black-box style tool, the testing involves the following steps:
 
 1. Preparing data so that all of the OAS scenarios may be tested
@@ -200,7 +202,6 @@ When using a black-box style tool, the testing involves the following steps:
 3. Starting the API locally, stubbing out downstream dependencies where possible
 4. Running the tool
 5. Capturing the output
-
 
 #### Define the Test Suite
 
@@ -211,7 +212,7 @@ Here is the Drift test suite we have created for our Product API, with some prop
 3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
 4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-`example-provider/drify/drift.yaml`{{copy}}
+`example-provider/drift/drift.yaml`{{copy}}
 
 The version of the drift-testcase-file schema we are using is v1, which is the latest version at the time of writing. You can find the latest version of the schema here: https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
 

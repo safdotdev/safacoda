@@ -281,7 +281,7 @@ The tutorial environment should have installed 2 projects and their dependencies
 Open up a separate terminal and run the following command:
 
 1. `cd /root/example-provider`{{execute}}
-1. `curl localhost:8080/products | jq .`{{execute}}
+1. `curl -H "Authorization: Bearer $(date)" localhost:8080/products | jq .`{{execute}}
 
 You should see the following output:
 

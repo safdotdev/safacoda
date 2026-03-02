@@ -39,4 +39,4 @@ You will:
 - Node - for the applications being tested
 - [Mountebank](http://www.mbtest.org/) - for API mocking
 - [Drift](https://pactflow.github.io/drift-docs) - for Spec-First API Testing
-- Github Actions - for CI/CD pipeline
+- [PactFlow](https://pactflow.io) - for contract sharing and compatibility checks

@@ -5,9 +5,11 @@ Now that we have created and verified our provider contract, we need to share th
 The publishing step takes two key components:
 
 - The provider contract itself (in our case, the OAS document)
-- The test results (in our case, the Dredd output and whether or not it passed)
+- The test results (in our case, the Drift output and whether or not it passed)
 
 This information will be helpful later on, when we need to check compatibility with its consumers.
+
+Traditionally this would be setup as part of a CI/CD pipeline, where you run your API tests, and then publish the contract and test results to PactFlow as part of the same pipeline. For the purposes of this workshop, we're going to run these steps manually.
 
 1. Go to PactFlow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
@@ -18,8 +20,45 @@ This information will be helpful later on, when we need to check compatibility w
    ```
 2. `echo $PACT_BROKER_BASE_URL`{{execute}} This should return your base url
 3. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
-4. `npm run publish`{{execute}}
-5. Go to your PactFlow dashboard and check that a new contract has appeared
+4. `ls -la output/results/verification.*.result`{{execute}} to list your test report
+5. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the Pact CLI
+6. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
+```
+# Capture the exit code from Drift
+EXIT_CODE=$?
+
+# Find the generated verification bundle
+VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
+
+./pact pactflow publish-provider-contract \
+openapi.yaml \
+  --provider "my-product-api" \
+  --provider-app-version "$(git rev-parse --short HEAD)" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)" \
+  --content-type application/yaml \
+  --verification-exit-code $EXIT_CODE \
+  --verification-results "$VERIFICATION_FILE" \
+  --verification-results-content-type application/vnd.smartbear.drift.result \
+  --verifier drift
+```{{execute}}
+
+You should see output similar to this:
+
+```
+📨 Attempting to publish provider contract for provider: my-product-api version: 27ae6a6
+✅ Created my-product-api version 27ae6a6 with branch feat/advanced-drift
+Provider contract published for my-product-api version 27ae6a6 with successful self verification results.
+View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/27ae6a6/provider-contract
+Next steps:
+* Publish a pact for this provider. See https://docs.pactflow.io/go/publish-consumer-contract-bdct
+* Check your application is safe to deploy - https://docs.pact.io/can_i_deploy
+$ pact-broker can-i-deploy --pacticipant my-product-api --version 27ae6a6 --to-environment <your environment name>
+* Record deployment or release to specified environment (choose one) - https://docs.pact.io/go/record-deployment
+$ pact-broker record-deployment --pacticipant my-product-api --version 27ae6a6 --environment <your environment name>
+$ pact-broker record-release --pacticipant my-product-api --version 27ae6a6 --environment <your environment name>
+```
+
+7. Go to your PactFlow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
 
