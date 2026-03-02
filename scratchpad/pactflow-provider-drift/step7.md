@@ -118,7 +118,7 @@ Open the `mountebankSerialiser.js` file and update line 2 to reference the name 
 
 ```js
 const provider = "my-product-api";
-```
+```{{copy}}
 
 To extract the mock information, we have a few choices (see http://www.mbtest.org/docs/api/mocks). In this case, when we start Mountebank, we actually pass the `--debug` [flag](http://www.mbtest.org/docs/commandLine#start) giving us a really important behaviour:
 
@@ -140,6 +140,6 @@ OK, time to run the tests!
 
 ### Check
 
-1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json`{{copy}}
-   1. Switch to Tab 1 and run `cat pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json | jq .`{{exec}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-my-product-api.json`{{copy}}
+   1. Switch to Tab 1 and run `cat pacts/pactflow-example-bi-directional-consumer-mountebank-my-product-api.json | jq .`{{exec}}
 2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{copy}}

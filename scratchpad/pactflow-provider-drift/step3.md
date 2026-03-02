@@ -157,6 +157,7 @@ operations:
 Run the drift verifier command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
 
 `cd /root/example-provider`{{execute}}
+
 `drift verifier --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
 
 #### Viewing Test Results
@@ -298,9 +299,7 @@ Here is an unhappy path test case, where the provided authentication token is in
         statusCode: 401
 ```
 
-#### Run the Provider tests
-
-`npm run test:inmemory`{{execute}}
+#### View the Provider test setup
 
 Our javascript test script will programmatically start our server, and the drift API testing tool, which will then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:8080`.
 
@@ -342,7 +341,7 @@ describe("API Tests with Drift", () => {
 });
 ```
 
-## Check
+## Execute the tests
 
 Now we can run the tests:
 
@@ -441,3 +440,8 @@ Ran all test suites.
 ```
 
 As you can see, Drift has issued calls to all 3 endpoints, each with multiple variations, and the tests are ✅.
+
+## Before you move on
+
+1. `drift`{{execute}} should be globally installed, if not, ensure you have installed it correctly using `npm install -g @pactflow/drift`{{execute}}
+2. There are verification results `ls -la /root/example-provider/output/results/verification.*.result`{{execute}} for the test run

@@ -88,15 +88,15 @@ pact broker can-i-deploy \
 ```
 ✗ npm run can-i-deploy
 
-> product-service@1.0.0 can-i-deploy /Users/matthewfellows/development/public/pactflow-example-bi-directional-provider-dredd
-> pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-provider-dredd --version="$(npx @pact-foundation/absolute-version)" --to-environment production
+> product-service@1.0.0 can-i-deploy /Users/matthewfellows/development/public/my-product-api
+> pact-broker can-i-deploy --pacticipant my-product-api --version "$(git rev-parse --short HEAD)" --to-environment production
 
 npx: installed 47 in 1.509s
 Computer says no ¯_(ツ)_/¯
 
 CONSUMER                             | C.VERSION          | PROVIDER                        | P.VERSION                                | SUCCESS? | RESULT#
 -------------------------------------|--------------------|---------------------------------|------------------------------------------|----------|--------
-pactflow-example-bi-directional-consumer-mountebank | 5009e94+1645930887 | pactflow-example-bi-directional-provider-dredd | aec911-master+aec911.SNAPSHOT.Matts-iMac | false    | 1
+pactflow-example-bi-directional-consumer-mountebank | 5009e94+1645930887 | my-product-api | aec911-master+aec911.SNAPSHOT.Matts-iMac | false    | 1
 
 VERIFICATION RESULTS
 --------------------
@@ -163,7 +163,7 @@ Computer says no ¯_(ツ)_/¯
 
 CONSUMER                             | C.VERSION                                | PROVIDER                        | P.VERSION          | SUCCESS? | RESULT#
 -------------------------------------|------------------------------------------|---------------------------------|--------------------|----------|--------
-pactflow-example-bi-directional-consumer-mountebank | 009e94-master+009e94.SNAPSHOT.Matts-iMac | pactflow-example-bi-directional-provider-dredd | caec911+1645930967 | false    | 1
+pactflow-example-bi-directional-consumer-mountebank | 009e94-master+009e94.SNAPSHOT.Matts-iMac | my-product-api | caec911+1645930967 | false    | 1
 
 VERIFICATION RESULTS
 --------------------
