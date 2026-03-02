@@ -83,16 +83,19 @@ These concerns belong to functional, integration, or E2E testing.
 
 #### Install Drift
 
-The simplest way to try Drift without installing anything globally is with npx:
+Drift is available as a standalone binary, and is language agnostic. It can be used to test any API, regardless of the implementation language or framework.
+
+The simplest way to try Drift without installing anything globally is with `npx` (required node):
 
 `npx @pactflow/drift --help`{{execute}}
 
 If you prefer a global install (available across shells), install from npm:
 
 `npm install -g @pactflow/drift`{{execute}}
+
 `drift --help`{{execute}}
 
-Need more options? See our [Installation Guide](https://pactflow.github.io/drift-docs/docs/how-to/install) for manual installation, verification steps, and troubleshooting.
+If you don't use node, or need more options, see our [Installation Guide](https://pactflow.github.io/drift-docs/docs/how-to/install) for manual installation, verification steps, and troubleshooting.
 
 #### Create your First Test Suite
 
@@ -184,9 +187,9 @@ If a test fails, you'll see a Failures section with details about what went wron
 
 #### What Happened Behind the Scenes
 
-1. Source Loading: Drift fetched the oas.yaml from the remote URL.
-1. Contract Mapping: It mapped your getInventory_Success operation to the /store/inventory endpoint in the spec.
-1. Deep Validation: Drift executed the HTTP request and performed a full JSON schema validation on the response to ensure it matches the Petstore model.
+1. Source Loading: Drift fetched the `oas.yaml` from the remote URL.
+1. Contract Mapping: It mapped your `getInventory_Success` operation to the `/store/inventory` endpoint in the spec.
+1. Deep Validation: Drift executed the HTTP request and performed a full JSON schema validation on the response to ensure it matches the `Petstore` model.
 
 ### Create and Run Tests for the Product API
 
@@ -208,7 +211,7 @@ Here is the Drift test suite we have created for our Product API, with some prop
 3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
 4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-`example-provider/automation/drift.yaml`{{copy}}
+`example-provider/drify/drift.yaml`{{copy}}
 
 The version of the drift-testcase-file schema we are using is v1, which is the latest version at the time of writing. You can find the latest version of the schema here: https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
 
@@ -297,7 +300,7 @@ Here is an unhappy path test case, where the provided authentication token is in
 
 `npm run test:inmemory`{{execute}}
 
-Our javascript test script will programmatically start our server, and the drift API testing tool, which will then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:3001`.
+Our javascript test script will programmatically start our server, and the drift API testing tool, which will then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:8080`.
 
 View the file at `example-provider/src/product/api-inmemory.test.js`{{copy}} to see how this is implemented.
 
@@ -342,7 +345,7 @@ describe("API Tests with Drift", () => {
 Now we can run the tests:
 
 1. `cd /root/example-provider`{{execute}}
-2. `npm t`{{execute}}
+2. `npm run test:inmemory`{{execute}}
 
 Your output should look like this:
 

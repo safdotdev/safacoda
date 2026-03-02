@@ -254,7 +254,7 @@ const app = express();
 const cors = require("cors");
 const routes = require("./src/product/product.routes");
 
-const port = 3001;
+const port = 8080;
 
 const init = () => {
   app.use(express.json());
@@ -281,7 +281,7 @@ The tutorial environment should have installed 2 projects and their dependencies
 Open up a separate terminal and run the following command:
 
 1. `cd /root/example-provider`{{execute}}
-1. `curl localhost:3001/products | jq .`{{execute}}
+1. `curl localhost:8080/products | jq .`{{execute}}
 
 You should see the following output:
 

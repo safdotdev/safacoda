@@ -1,12 +1,12 @@
 #!/bin/bash
 echo "setup node 24"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && source ~/.bashrc && nvm install 24
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash && source ~/.bashrc && nvm install 24 && nvm use 24
 echo "Downloading projects"
 echo "=> downloading consumer project"
 git clone https://github.com/pactflow/example-bi-directional-consumer-mountebank
 
 echo "=> downloading provider project"
-git clone https://github.com/mefellows/example-provider
+git clone https://github.com/mefellows/example-provider --branch feat/advanced-drift
 
 echo "Changing into directory of the provider project: /root/example-provider"
 cd /root/example-provider
