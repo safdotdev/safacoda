@@ -22,7 +22,8 @@ Traditionally this would be setup as part of a CI/CD pipeline, where you run you
 3. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
 4. `ls -la output/results/verification.*.result`{{execute}} to list your test report
 5. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the Pact CLI
-6. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
+6. `mv ./pact /usr/local/bin/`{{execute}} to move the Pact CLI to a location on your PATH
+7. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
 ```
 # Capture the exit code from Drift
 EXIT_CODE=$?
@@ -30,7 +31,7 @@ EXIT_CODE=$?
 # Find the generated verification bundle
 VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
 
-./pact pactflow publish-provider-contract \
+pact pactflow publish-provider-contract \
 openapi.yaml \
   --provider "my-product-api" \
   --provider-app-version "$(git rev-parse --short HEAD)" \
