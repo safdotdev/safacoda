@@ -21,7 +21,7 @@ Traditionally this would be setup as part of a CI/CD pipeline, where you run you
 2. `echo $PACT_BROKER_BASE_URL`{{execute}} This should return your base url
 3. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
 4. `ls -la output/results/verification.*.result`{{execute}} to list your test report
-5. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the Pact CLI
+5. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the [Pact CLI](https://docs.pact.io/implementation_guides/cli#pact---all-in-one-cli)
 6. `mv ./pact /usr/local/bin/`{{execute}} to move the Pact CLI to a location on your PATH
 7. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
 ```

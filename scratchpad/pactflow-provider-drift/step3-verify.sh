@@ -1,1 +1,1 @@
-ls -la output/results/verification.*.result && echo "done"
+ls -la /root/example-provider/output/results/verification.*.result && echo "done"
