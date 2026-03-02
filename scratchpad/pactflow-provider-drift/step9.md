@@ -12,17 +12,26 @@ _REMEMBER: The `can-i-deploy` command is an important part of a CI/CD workflow, 
 
 Let's run the command:
 
-`npm run can-i-deploy`{{execute}}
+```
+pact broker can-i-deploy \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
 
 This should pass, because the provider has already pulbished its contract and deployed to production, and we believe the consumer is compatible with the provider OAS:
 
 ```
-$ npx pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-consumer-mountebank --version $GIT_COMMIT --to-environment production
+$ pact broker can-i-deploy \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+
 Computer says yes \o/
 
 CONSUMER                             | C.VERSION | PROVIDER                        | P.VERSION | SUCCESS? | RESULT#
 -------------------------------------|-----------|---------------------------------|-----------|----------|--------
-pactflow-example-bi-directional-consumer-mountebank | 5009e94   | pactflow-example-bi-directional-provider-dredd | 6559541   | true     | 1
+pactflow-example-bi-directional-consumer-mountebank | 5009e94   | my-product-api | 6559541   | true     | 1
 
 VERIFICATION RESULTS
 --------------------
@@ -33,7 +42,12 @@ All required verification results are published and successful
 
 We can now deploy our consumer to production. Once we have deployed, we let PactFlow know that the new version of the consumer has been promoted to that environment:
 
-`npm run deploy`{{execute}}
+```
+pact broker record-deployment \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --environment production
+```{{execute}}
 
 This allows PactFlow to prevent any providers from deploying an incompatible change to `production`.
 

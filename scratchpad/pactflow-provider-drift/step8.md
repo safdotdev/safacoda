@@ -16,8 +16,35 @@ _NOTE: if step 1 and 2 return a value you can move to step 5
    export PACT_BROKER_TOKEN=YOUR_API_TOKEN
    ```
 
-5. `npm run publish`{{execute}}
-6. Go to your PactFlow dashboard and check that a new contract has appeared
+5. Publish the pact files
+
+```
+# Capture the exit code from Drift
+EXIT_CODE=$?
+
+# Find the generated verification bundle
+VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
+
+pact broker publish \
+pacts \
+  --consumer-app-version "$(git rev-parse --short HEAD)" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)"
+```{{execute}}
+
+You should see output similar to this:
+
+```
+📨 Attempting to publish pact for consumer: pactflow-example-bi-directional-consumer-mountebank against provider: pactflow-example-bi-directional-provider-dredd
+✅ Created pactflow-example-bi-directional-consumer-mountebank version bcc704d with branch master
+Pact successfully published for pactflow-example-bi-directional-consumer-mountebank version bcc704d and provider pactflow-example-bi-directional-provider-dredd.
+View the published pact at https://test.pactflow.io/pacts/provider/pactflow-example-bi-directional-provider-dredd/consumer/pactflow-example-bi-directional-consumer-mountebank/version/bcc704d
+Events detected: contract_published, contract_requiring_verification_published, contract_content_changed (pact content has changed since previous untagged version)
+No enabled webhooks found for the detected events
+Next steps:
+* Add Pact verification tests to the pactflow-example-bi-directional-provider-dredd build. See https://docs.pact.io/go/provider_verification
+```
+
+1. Go to your PactFlow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
 
