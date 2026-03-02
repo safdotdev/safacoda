@@ -90,9 +90,17 @@ Reset our change `git reset --hard feat/advanced-drift`{{execute}}
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
-│ pactflow-example-bi-directional-consumer-mountebank ┆ f3873c8   ┆ my-product-api ┆ 309a813   ┆ false    ┆ false  │
+│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ my-product-api ┆ 309a813   ┆ false    ┆ 1      │
 └─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
-The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (f3873c8) and the oas for version 309a813 of my-product-api failed
+
+VERIFICATION RESULTS
+--------------------
+1. https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
+
+
+The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of my-product-api failed
+
+
 ❌ Computer says no ¯\_(ツ)_/¯
 ❌ No deployable version found
 ```
@@ -149,9 +157,17 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
-│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ my-product-api ┆ 27ae6a6   ┆ false    ┆ false  │
+│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ my-product-api ┆ 309a813   ┆ false    ┆ 1      │
 └─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
-The cross contract comparison between the pact for the version of pactflow-example-bi-directional-consumer-mountebank from branch feat/advanced-drift (7cbbcd8) and the oas for the version of my-product-api currently in production (27ae6a6) failed
+
+VERIFICATION RESULTS
+--------------------
+1. https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
+
+
+The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of my-product-api failed
+
+
 ❌ Computer says no ¯\_(ツ)_/¯
 ❌ No deployable version found
 ```
