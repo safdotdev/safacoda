@@ -136,6 +136,7 @@ This process is essentially same for any mocking tool, such as Wiremock or Cypre
 
 OK, time to run the tests!
 
+1. `cd /root/cd example-bi-directional-consumer-mountebank`{{execute}}
 1. Run the tests `npm t`{{execute}}
 
 ### Check
