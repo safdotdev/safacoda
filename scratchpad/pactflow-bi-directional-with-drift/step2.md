@@ -161,12 +161,14 @@ We define our product, the available routes, the datastore (an simple in-memory 
 
 ```
 class Product {
-    constructor(id, type, name, version, price) {
+    constructor(id, type, name, version) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.version = version;
-        this.price = price;
+        if (!id || !type || !name) {
+            throw new Error("Invalid product");
+        }
     }
 }
 
@@ -179,26 +181,29 @@ module.exports = Product;
 const router = require('express').Router();
 const controller = require('./product.controller');
 
-router.get("/product/:id", controller.getById);
+router.get("/products/:id", controller.getById);
 router.get("/products", controller.getAll);
 router.post("/products", controller.create);
+router.post("/admin", controller.admin);
 
 module.exports = router;
 ```
 
-`example-provider/src/product/product.repository.js`{{copy}}
+`src/product/repositories/InMemoryRepository.js`{{copy}}
 
 ```
-const Product = require('./product');
+const Product = require('../product');
 
-class ProductRepository {
+const defaultProducts = [
+    ["9", new Product(9, "CREDIT_CARD", "Gem Visa", "v1")],
+    ["10", new Product(10, "CREDIT_CARD", "28 Degrees", "v1")],
+    ["11", new Product(11, "PERSONAL_LOAN", "MyFlexiPay", "v2")],
+];
+
+class InMemoryRepository {
 
     constructor() {
-        this.products = new Map([
-            ["09", new Product("09", "CREDIT_CARD", "Gem Visa", "v1", 99.99)],
-            ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1", 49.49)],
-            ["11", new Product("11", "PERSONAL_LOAN", "MyFlexiPay", "v2", 16.50)],
-        ]);
+        this.products = new Map(defaultProducts);
     }
 
     async fetchAll() {
@@ -209,12 +214,28 @@ class ProductRepository {
         return this.products.get(id);
     }
 
-    async create(product) {
-        return this.products.set(product.id, product)
+    async add(product) {
+        return this.products.set(product.id, product);
+    }
+    
+    setupProducts(products) {
+        this.products = new Map();
+        const productList = Array.isArray(products) ? products : [];
+
+        for (const product of productList) {
+            const normalized = product instanceof Product
+                ? product
+                : new Product(product.id, product.type, product.name, product.version);
+            this.products.set(`${normalized.id}`, normalized)
+        }
+    }
+
+    resetProducts() {
+        this.products = new Map(defaultProducts);
     }
 }
 
-module.exports = ProductRepository;
+module.exports = InMemoryRepository;
 ```
 
 `example-provider/src/product/product.controller.js`{{copy}}
@@ -226,43 +247,94 @@ module.exports = ProductRepository;
 
 ```
 const Product = require("./product");
-const ProductRepository = require("./product.repository");
+const RepositoryFactory = require("./repositories/RepositoryFactory");
 
-const repository = new ProductRepository();
+let repository = null;
 
-exports.create = async (req, res) => {
-    const data = req.body
-    const product = new Product(data.id, data.type, data.name, data.version, data.price)
-    product ? res.send(product) : res.status(400).send({message: "invalid product"})
+// Initialize repository asynchronously
+const initializeRepository = async () => {
+    if (!repository) {
+        repository = await RepositoryFactory.create();
+    }
+    return repository;
 };
+
+exports.admin = async (req, res) => {
+    console.log("admin");
+    console.log(req.body);
+
+    res.status(200).send();
+};
+
 exports.getAll = async (req, res) => {
-    res.send(await repository.fetchAll())
+    console.log("getAll");
+    const repo = await initializeRepository();
+    res.send(await repo.fetchAll())
 };
+
 exports.getById = async (req, res) => {
-    const product = await repository.getById(req.params.id);
+    console.log("getById", req.params.id);
+    if (!req.params.id || Number.isNaN(parseInt(req.params.id)) ) {
+        res.status(400).send({message: "Product ID is required"});
+        return;
+    }
+    const repo = await initializeRepository();
+    const product = await repo.getById(req.params.id);
     product ? res.send(product) : res.status(404).send({message: "Product not found"})
 };
 
-exports.repository = repository;
+exports.create = async (req, res) => {
+    console.log("create", req.body);
+    try {
+        const product = new Product(req.body.id, req.body.type, req.body.name, req.body.version);
+        const repo = await initializeRepository();
+        await repo.add(product);
+        res.status(201).send()
+    } catch (e) {
+        res.status(400).send({message: "Invalid product"})
+    }
+};
+
+exports.setup = async (req, res) => {
+    console.log('setup', req.body)
+    const repo = await initializeRepository();
+    const products = Array.isArray(req.body.products) ? req.body.products : [];
+    await repo.setupProducts(products)
+    res.status(200).send()
+};
+
+exports.teardown = async (req, res) => {
+    console.log('teardown')
+    const repo = await initializeRepository();
+    await repo.resetProducts()
+    res.status(200).send()
+};
+
+exports.initializeRepository = initializeRepository;
+exports.getRepository = () => repository;
 ```
 
 `example-provider/server.js`{{copy}}
 
 ```
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const routes = require("./src/product/product.routes");
+const app = require('express')();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const routes = require('./src/product/product.routes');
+const authMiddleware = require('./src/middleware/auth.middleware');
+const controller = require('./src/product/product.controller');
 
 const port = 8080;
 
-const init = () => {
-  app.use(express.json());
-  app.use(cors());
-  app.use(routes);
-  return app.listen(port, () =>
-    console.log(`Provider API listening on port ${port}...`)
-  );
+const init = async () => {
+    // Initialize repository before setting up routes
+    await controller.initializeRepository();
+    
+    app.use(cors());
+    app.use(authMiddleware);
+    app.use(bodyParser.json());
+    app.use(routes);
+    return app.listen(port, () => console.log(`Provider API listening on port ${port}...`));
 };
 
 init();
