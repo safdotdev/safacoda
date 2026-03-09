@@ -1,0 +1,1 @@
+ls /root/example-bi-directional-consumer-mountebank/pacts/*.json && echo "done"
