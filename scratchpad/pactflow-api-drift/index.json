@@ -1,8 +1,8 @@
 {
-  "title": "PactFlow - Bi-Directional Contract Testing",
-  "description": "A PactFlow tutorial to teach the basics of the Bi-Directional Contract Testing feature",
+  "title": "PactFlow Drift - An introduction & overview",
+  "description": "Verify that your API actually behaves the way your OpenAPI contract says it should.",
   "difficulty": "Beginner",
-  "time": "15",
+  "time": "30",
   "details": {
     "steps": [
       {
