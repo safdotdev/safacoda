@@ -18,7 +18,7 @@ If you don't use node, or need more options, see our [Installation Guide](https:
 
 ## Create your First Test Suite
 
-Create a file named `drift.yaml` in the `example-provider` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+Create a file named `drift.yaml` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
 
 ```
 # yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json

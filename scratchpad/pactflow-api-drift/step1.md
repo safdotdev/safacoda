@@ -19,7 +19,7 @@ These issues are often discovered late, after deployment, when they are harder a
 
 Drift helps prevent this problem. It runs real requests against your API and validates the responses against your OpenAPI specification.
 
-![Drift verification workflow](/assets/drift.gif)
+![Drift verification workflow](./assets/drift.gif)
 
 ## Understanding API Drift
 
