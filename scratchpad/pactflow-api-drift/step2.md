@@ -18,7 +18,7 @@ If you don't use node, or need more options, see our [Installation Guide](https:
 
 ## Create your First Test Suite
 
-Create a file named `drift.yaml` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+Create a file named `drift.yaml` folder in the `/root` directory. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
 
 ```
 # yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
@@ -77,7 +77,7 @@ Click on the "extensions" icon in your IDE and search for "YAML" to install the 
 
 Run the drift verifier command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
 
-`cd /root/example-provider`{{execute}}
+`cd /root`{{execute}}
 
 `drift verifier --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
 
