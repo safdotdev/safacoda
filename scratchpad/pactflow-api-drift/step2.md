@@ -10,15 +10,21 @@ The simplest way to try Drift without installing anything globally is with `npx`
 
 If you prefer a global install (available across shells), install from npm, please do so, for this tutorial
 
-`npm install -g @pactflow/drift`{{execute}}
+👉 `npm install -g @pactflow/drift`{{execute}}
 
-`drift --help`{{execute}}
+👉 `drift --help`{{execute}}
 
 If you don't use node, or need more options, see our [Installation Guide](https://pactflow.github.io/drift-docs/docs/how-to/install) for manual installation, verification steps, and troubleshooting.
 
 ## Create your First Test Suite
 
-Create a file named `drift.yaml` folder in the `/root` directory. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+Create a file named `drift.yaml` in the `/root` directory. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+
+👉 `cd /root && touch drift.yaml`{{execute}}
+
+Then click the text below to copy the contents of the `drift.yaml` file. Paste it into your editor and save the file.
+
+👇
 
 ```
 # yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
@@ -77,9 +83,9 @@ Click on the "extensions" icon in your IDE and search for "YAML" to install the 
 
 Run the drift verifier command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
 
-`cd /root`{{execute}}
+👉 `cd /root`{{execute}}
 
-`drift verifier --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
+👉 `drift verifier --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
 
 ## Viewing Test Results
 
@@ -107,6 +113,8 @@ Setup time 72.192458ms
 Each row shows an operation, its target, and the result (OK or FAILED). The summary at the top tells you how many test cases and operations passed.
 
 If a test fails, you'll see a Failures section with details about what went wrong. See [Debugging](https://pactflow.github.io/drift-docs/docs/how-to/debugging) for how to interpret and fix failures.
+
+💡 __Did it fail?: We are used a shared hosted server, so it is possible that the data as been modified before or during your test, we will show you later how to execute against a local service and techniques for controlling state.__
 
 ## What Happened Behind the Scenes
 
