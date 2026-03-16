@@ -1,314 +1,113 @@
-## The Provider
+Getting Started 
 
-### Design the API
+## Install Drift
 
-As we are following a specification or [design first approach](https://swagger.io/blog/api-design/design-first-or-code-first-api-development/) to API development, we start by creating an [OpenAPI](https://oai.github.io/Documentation/start-here.html) description document, that describes how our API should work.
+Drift is available as a standalone binary, and is language agnostic. It can be used to test any API, regardless of the implementation language or framework.
 
-Authoring an OAS document is beyond the scope of this tutorial, but you can find plenty of resources on the internet (such as at [swagger.io](https://swagger.io)).
+The simplest way to try Drift without installing anything globally is with `npx` (required node):
 
-```
-openapi: 3.1.1
-info:
-  title: Product API
-  description: PactFlow Product API demo
-  version: 1.0.0
-servers:
-- url: /
-paths:
-  /products:
-    get:
-      summary: List all products
-      description: Returns all products
-      operationId: getAllProducts
-      security:
-        - bearerAuth: []
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json;charset=utf-8:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
-              examples:
-                application/json:
-                  value:
-                    - id: 10
-                      type: "beverage"
-                      price: 10.99
-                      name: "cola"
-                      version: "1.0.0"
-        "401":
-          description: Unauthorized - missing or invalid token
-          content: {}
-    post:
-      summary: Create a product
-      description: Creates a new product
-      operationId: createProduct
-      security:
-        - bearerAuth: []
-      requestBody:
-        description: Create a new Product
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product'
-            examples:
-              application/json:
-                value:
-                  id: 666
-                  type: "beverage"
-                  price: 10.99
-                  name: "cola"
-                  version: "1.0.0"
-        required: true
-      responses:
-        "201":
-          description: successful operation
-        "401":
-          description: Unauthorized - missing or invalid token
-          content: {}
-  /products/{id}:
-    get:
-      summary: Find product by ID
-      description: Returns a single product
-      operationId: getProductByID
-      security:
-        - bearerAuth: []
-      parameters:
-      - name: id
-        in: path
-        description: ID of product to get
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: number
-        example: 10
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json;charset=utf-8:
-              schema:
-                $ref: '#/components/schemas/Product'
-              examples:
-                application/json:
-                  value:
-                    id: 10
-                    type: "beverage"
-                    price: 10.99
-                    name: "cola"
-                    version: "1.0.0"
-        "400":
-          description: Invalid ID supplied
-          content: {}
-        "401":
-          description: Unauthorized - missing or invalid token
-          content: {}
-        "404":
-          description: Product not found
-          content: {}
-components:
-  securitySchemes:
-    # Bearer token format is "Bearer <ISO8601 timestamp>"
-    bearerAuth:
-      type: http
-      scheme: bearer
-  schemas:
-    Product:
-      required:
-      - id
-      - name
-      # - price
-      type: object
-      properties:
-        id:
-          type: number
-        type:
-          type: string
-        name:
-          type: string
-        version:
-          type: string
-        price:
-          type: number
-```
+`npx -y @pactflow/drift --help`{{execute}}
 
-As you can see, we have 3 main endpoints:
+If you prefer a global install (available across shells), install from npm, please do so, for this tutorial
 
-1. `POST /products` - create a new product
-1. `GET /products` - gets all products
-1. `GET /products/:id` - gets a single product
+`npm install -g @pactflow/drift`{{execute}}
 
-Having designed our API, we can now set about building it.
+`drift --help`{{execute}}
 
-### Implement the Product API
+If you don't use node, or need more options, see our [Installation Guide](https://pactflow.github.io/drift-docs/docs/how-to/install) for manual installation, verification steps, and troubleshooting.
 
-Here is the Product API using the [Express JS](https://expressjs.com) framework. Once again, writing an API is beyond the scope of this tutorial.
+## Create your First Test Suite
 
-_NOTE: you can see the full project here: <https://github.com/mefellows/example-provider/tree/feat/advanced-drift>_
-
-We define our product, the available routes, the datastore (an simple in-memory database) and the server.
-
-1. Ensure the `editor` tab is open
-2. Click on a filename(s) below to copy it
-3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
-4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
-
-`example-provider/src/product/product.js`{{copy}}
+Create a file named `drift.yaml` in the `example-provider` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
 
 ```
-class Product {
-    constructor(id, type, name, version, price) {
-        this.id = id;
-        this.type = type;
-        this.name = name;
-        this.version = version;
-        this.price = price;
-    }
-}
+# yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
+drift-testcase-file: v1
+title: "Petstore API Verification"
 
-module.exports = Product;
-```
+sources:
+  - name: petstore-oas
+    # Use the remote Petstore API description
+    uri: https://petstore3.swagger.io/api/v3/openapi.yaml
+    # Or a local one
+    # path: oad.yaml
 
-`example-provider/src/product/product.routes.js`{{copy}}
+plugins:
+  - name: oas
+  - name: json
 
-```
-const router = require('express').Router();
-const controller = require('./product.controller');
+operations:
+  # Verify that the inventory can be retrieved
+  getInventory_Success:
+    target: petstore-oas:getInventory
+    description: "Check if store inventory is accessible"
+    expected:
+      response:
+        statusCode: 200
 
-router.get("/product/:id", controller.getById);
-router.get("/products", controller.getAll);
-router.post("/products", controller.create);
+  # Verify fetching a pet by a specific ID
+  getPetById_Success:
+    target: petstore-oas:getPetById
+    description: "Fetch details for pet ID 1"
+    parameters:
+      path:
+        petId: 1
+    expected:
+      response:
+        statusCode: 200
 
-module.exports = router;
-```
+  # Verify fetching a pet by a specific ID
+  getPetById_NotFound:
+    target: petstore-oas:getPetById
+    description: "Fetch details for pet ID 143"
+    parameters:
+      path:
+        petId: 143
+    expected:
+      response:
+        statusCode: 404
+```{{copy}}
 
-`example-provider/src/product/product.repository.js`{{copy}}
 
-```
-const Product = require('./product');
+💡 __IDE Tip: The YAML Language Server comment at the top enables auto-completion and validation in your editor. As you type, you'll see suggestions for property names and valid values.__
 
-class ProductRepository {
+## Run the Verifier
 
-    constructor() {
-        this.products = new Map([
-            ["09", new Product("09", "CREDIT_CARD", "Gem Visa", "v1", 99.99)],
-            ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1", 49.49)],
-            ["11", new Product("11", "PERSONAL_LOAN", "MyFlexiPay", "v2", 16.50)],
-        ]);
-    }
+Run the drift verifier command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
 
-    async fetchAll() {
-        return [...this.products.values()]
-    }
+`cd /root/example-provider`{{execute}}
 
-    async getById(id) {
-        return this.products.get(id);
-    }
+`drift verifier --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
 
-    async create(product) {
-        return this.products.set(product.id, product)
-    }
-}
+## Viewing Test Results
 
-module.exports = ProductRepository;
-```
-
-`example-provider/src/product/product.controller.js`{{copy}}
-
-1. Click the filename above to copy.
-2. Ensure the `editor` tab is open
-3. press `ctrl+p` or `command+p` to search for a file
-4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+Drift displays results in a clear table format:
 
 ```
-const Product = require("./product");
-const ProductRepository = require("./product.repository");
+─[ Summary ]───────────────────────────────────────────────────────────────────────────────────────────
 
-const repository = new ProductRepository();
+Executed 1 test case (1 passed, 0 failed)
+Executed 3 operations (3 passed, 0 failed, 0 skipped)
+Execution time 1.288865209s
+Setup time 72.192458ms
 
-exports.create = async (req, res) => {
-    const data = req.body
-    const product = new Product(data.id, data.type, data.name, data.version, data.price)
-    product ? res.send(product) : res.status(400).send({message: "invalid product"})
-};
-exports.getAll = async (req, res) => {
-    res.send(await repository.fetchAll())
-};
-exports.getById = async (req, res) => {
-    const product = await repository.getById(req.params.id);
-    product ? res.send(product) : res.status(404).send({message: "Product not found"})
-};
-
-exports.repository = repository;
+┌────────────────────────────┬────────────────────────────┬──────────────────────────────────┬────────┐
+│ Testcase                   ┆ Operation                  ┆ Target                           ┆ Result │
+╞════════════════════════════╪════════════════════════════╪══════════════════════════════════╪════════╡
+│ Petstore API Test          ┆ getInventory_Success       ┆ petstore-oas:getInventory        ┆ OK     │
+├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌-┼╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌-╌╌╌┼╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌---╌╌╌┼╌╌╌╌╌╌╌╌┤
+│                            ┆ getPetById_Success         ┆ petstore-oas:getPetById          ┆ OK     │
+├╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌-╌╌╌╌┼╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌-╌╌╌┼╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌--╌╌╌┼╌╌╌╌╌╌╌╌┤
+│                            ┆ getPetById_NotFound        ┆ petstore-oas:getPetById          ┆ OK     │
+└────────────────────────────┴────────────────────────────┴──────────────────────────────────┴────────┘
 ```
 
-`example-provider/server.js`{{copy}}
+Each row shows an operation, its target, and the result (OK or FAILED). The summary at the top tells you how many test cases and operations passed.
 
-```
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const routes = require("./src/product/product.routes");
+If a test fails, you'll see a Failures section with details about what went wrong. See [Debugging](https://pactflow.github.io/drift-docs/docs/how-to/debugging) for how to interpret and fix failures.
 
-const port = 8080;
+## What Happened Behind the Scenes
 
-const init = () => {
-  app.use(express.json());
-  app.use(cors());
-  app.use(routes);
-  return app.listen(port, () =>
-    console.log(`Provider API listening on port ${port}...`)
-  );
-};
-
-init();
-```
-
-### Check
-
-Before moving to the next step, cd into the `example-provider` directory and run the provider to see if it starts.
-
-The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
-
-1. `cd /root/example-provider`{{execute}}
-1. `npm i`{{execute}}
-1. `npm start`{{execute}}
-
-Open up a separate terminal and run the following command:
-
-1. `cd /root/example-provider`{{execute}}
-1. `curl -H "Authorization: Bearer $(date)" localhost:8080/products | jq .`{{execute}}
-
-You should see the following output:
-
-```
-[
-  {
-    "id": "09",
-    "type": "CREDIT_CARD",
-    "name": "Gem Visa",
-    "version": "v1",
-    "price": 99.99
-  },
-  {
-    "id": "10",
-    "type": "CREDIT_CARD",
-    "name": "28 Degrees",
-    "version": "v1",
-    "price": 49.49
-  },
-  {
-    "id": "11",
-    "type": "PERSONAL_LOAN",
-    "name": "MyFlexiPay",
-    "version": "v2",
-    "price": 16.5
-  }
-]
-```
-
-Switch back to your first terminal and terminate (`ctrl-c`) the process to make sure your provider is no longer running.
+1. Source Loading: Drift fetched the `oas.yaml` from the remote URL.
+1. Contract Mapping: It mapped your `getInventory_Success` operation to the `/store/inventory` endpoint in the spec.
+1. Deep Validation: Drift executed the HTTP request and performed a full JSON schema validation on the response to ensure it matches the `Petstore` model.

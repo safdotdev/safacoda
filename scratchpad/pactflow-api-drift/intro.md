@@ -1,4 +1,4 @@
-In the scenario, you will learn the basics of managing API documentation drift with PactFlow Drift with bi-directional contract testing with PactFlow.
+In the scenario, you will learn the basics of Drift, the new API testing tool from PactFlow, and how to use it to manage API documentation and implementation drift.
 
 The course is written in NodeJS, however, extensive experience with the language will not be required for the workshop.
 
@@ -14,11 +14,23 @@ You must have:
 
 You will learn how:
 
-1. To use OpenAPI as part of a contract testing strategy
-2. To manage API Provider documentation and implementation deviation with PactFlow Drift
-3. To publish contracts (such as a pact file or an OpenAPI document) to PactFlow
-4. To prevent deploying breaking changes to an environment, such as production
-5. To use existing mocking tools (such as Mountebank or Wiremock) to create a consumer contract
+1. API Drift affects providers from delivering change, impacts consumer confidence, causing friction between teams.
+2. To use PactFlow Drift to prevent API drift and ensure that your API documentation and implementation are in sync
+3. Where Drift fits into your API Testing Strategy
+4. To install Drift, and get started with writing your first Drift tests
+5. Manage state with Drift, and use it to test your API's behavior in different scenarios
+6. Embedding Drift into your Test Framework
+7. Embedding Drift into your CI/CD pipeline, and using it to prevent API drift from reaching production
+8. To introduce advanced Drift features such as
+   1.  Dealing with Authenticated APIs
+   2.  Test Lifecycle Hooks and Lua Scripting
+       1.  Data Cleanup
+       2.  Dynamic Request/Response Manipulation
+   3.  Test Data Management with Lua Scripting
+   4.  Advanced Debugging and Troubleshooting Techniques
+       1.  Analyzing Test Failures
+       2.  Script Debugging
+   5.  Test parallelization
 
 ## Agenda
 
