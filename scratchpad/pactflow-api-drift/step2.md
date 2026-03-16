@@ -71,6 +71,8 @@ operations:
 
 💡 __IDE Tip: The YAML Language Server comment at the top enables auto-completion and validation in your editor. As you type, you'll see suggestions for property names and valid values.__
 
+Click on the "extensions" icon in your IDE and search for "YAML" to install the YAML Language Server extension. This will make writing your `drift.yaml` much easier!
+
 ## Run the Verifier
 
 Run the drift verifier command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
