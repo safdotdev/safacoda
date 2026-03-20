@@ -11,19 +11,19 @@ This information will be helpful later on, when we need to check compatibility w
 
 Traditionally this would be setup as part of a CI/CD pipeline, where you run your API tests, and then publish the contract and test results to PactFlow as part of the same pipeline. For the purposes of this workshop, we're going to run these steps manually.
 
-1. Go to PactFlow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
-1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
+1. Go to PactFlow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token) as `as Environment Variables`
+2. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
 
    ```
    export PACT_BROKER_BASE_URL=https://YOUR_PACTFLOW_SUBDOMAIN.pactflow.io
    export PACT_BROKER_TOKEN=YOUR_API_TOKEN
    ```
-2. `echo $PACT_BROKER_BASE_URL`{{execute}} This should return your base url
-3. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
-4. `ls -la output/results/verification.*.result`{{execute}} to list your test report
-5. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the [Pact CLI](https://docs.pact.io/implementation_guides/cli#pact---all-in-one-cli)
-6. `mv ./pact /usr/local/bin/`{{execute}} to move the Pact CLI to a location on your PATH
-7. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
+3. `echo $PACT_BROKER_BASE_URL`{{execute}} This should return your base url
+4. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
+5. `ls -la output/results/verification.*.result`{{execute}} to list your test report
+6. `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-cli/main/install.sh | sh`{{execute}} to install the [Pact CLI](https://docs.pact.io/implementation_guides/cli#pact---all-in-one-cli)
+7. `mv ./pact /usr/local/bin/`{{execute}} to move the Pact CLI to a location on your PATH
+8. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
 ```
 # Capture the exit code from Drift
 EXIT_CODE=$?
@@ -46,24 +46,28 @@ openapi.yaml \
 You should see output similar to this:
 
 ```
-📨 Attempting to publish provider contract for provider: my-product-api version: 27ae6a6
-✅ Created my-product-api version 27ae6a6 with branch feat/advanced-drift
-Provider contract published for my-product-api version 27ae6a6 with successful self verification results.
-View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/27ae6a6/provider-contract
+📨 Attempting to publish provider contract for provider: my-product-api version: 2f6c6b1
+✅ Created my-product-api version 2f6c6b1 with branch feat/advanced-drift
+Provider contract published for my-product-api version 2f6c6b1 with successful self verification results.
+View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/2f6c6b1/provider-contract-verification-results
 Next steps:
-* Publish a pact for this provider. See https://docs.pactflow.io/go/publish-consumer-contract-bdct
 * Check your application is safe to deploy - https://docs.pact.io/can_i_deploy
-$ pact-broker can-i-deploy --pacticipant my-product-api --version 27ae6a6 --to-environment <your environment name>
+$ pact-broker can-i-deploy --pacticipant my-product-api --version 2f6c6b1 --to-environment <your environment name>
 * Record deployment or release to specified environment (choose one) - https://docs.pact.io/go/record-deployment
-$ pact-broker record-deployment --pacticipant my-product-api --version 27ae6a6 --environment <your environment name>
-$ pact-broker record-release --pacticipant my-product-api --version 27ae6a6 --environment <your environment name>
+$ pact-broker record-deployment --pacticipant my-product-api --version 2f6c6b1 --environment <your environment name>
+$ pact-broker record-release --pacticipant my-product-api --version 2f6c6b1 --environment <your environment name>
 ```
 
-7. Go to your PactFlow dashboard and check that a new contract has appeared
+1. Go to your PactFlow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
 
-![pactflow-dashboard-unverified](./assets/dashboard-provider-only.png)
+![dashboard-provider-only](./assets/dashboard-provider-only.png)
+
+You can expand the contract to see more details, including the test results and the OAS document that was published.
+
+![dashboard-provider-only-expanded](./assets/dashboard-provider-only-expanded.png)
+
 
 ## Don't have a PactFlow account?
 
