@@ -13,7 +13,7 @@ Let's see it in action.
 
 Change directories into `cd /root/example-provider`{{execute}}
 
-1.  Try adding a new expectation on the provider by updating the contract. First remove the 'version' property in `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 32/54/122/123
+1.  Try adding a new expectation on the provider by updating the contract. First remove the 'version' property in `example-provider/src/product/product.js`{{copy}} and comment out in the oas `example-provider/openapi.yaml`{{copy}} at lines 32/55/94/124/125
 
     1. `git add . && git commit -m 'feat: remove version'`{{execute}}
     2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
@@ -48,9 +48,9 @@ Change directories into `cd /root/example-provider`{{execute}}
 
 OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `version` field? PactFlow knows all of the consumers needs down to the field level. Because no consumer uses `version` this is a safe operation.
 
-Reset our change `git reset --hard feat/advanced-drift`{{execute}}
+Reset our change `git reset --hard origin/feat/advanced-drift`{{execute}}
 
-1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 31/53/93/114/122/123
+1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 31/54/93/114/122/123
 
     1. `git add . && git commit -m 'feat: remove name'`{{execute}}
     2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
