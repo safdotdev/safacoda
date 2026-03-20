@@ -68,18 +68,6 @@ You can expand the contract to see more details, including the test results and 
 
 ![dashboard-provider-only-expanded](./assets/dashboard-provider-only-expanded.png)
 
-
-## Don't have a PactFlow account?
-
-If you don't have a PactFlow account, you can publish a [test broker](https://test.pactflow.io).
-
-```
-export PACT_BROKER_BASE_URL=https://test.pactflow.io
-export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
-```{{execute}}
-
-If you use this account, note that you won't have access to the UI.
-
 ## Check
 
 There should be a contract published in your PactFlow account before moving on.
