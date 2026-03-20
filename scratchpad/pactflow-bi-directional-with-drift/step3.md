@@ -85,6 +85,8 @@ These concerns belong to functional, integration, or E2E testing.
 
 Drift is available as a standalone binary, and is language agnostic. It can be used to test any API, regardless of the implementation language or framework.
 
+**Note: if npm or npx is not available in your tutorial shell, run `source /root/.bashrc`{{execute}} to load nvm (node version manager).**
+
 The simplest way to try Drift without installing anything globally is with `npx` (requires node):
 
 `npx -y @pactflow/drift --help`{{execute}}
@@ -101,9 +103,11 @@ If you don't use node, or need more options, see our [Installation Guide](https:
 
 Drift authenticates with PactFlow to validate your licence and download provider configurations. This is separate from authenticating to the API you are testing.
 
-The recommended way to authenticate is with the `drift auth` command:
+Obtain your API token from **Settings → API Tokens** in your PactFlow workspace.
 
-👉 `drift auth login`{{execute}}
+The recommended way to authenticate is with the `drift auth` command, lets check the status of our authentication with PactFlow:
+
+👉 `drift auth status`{{execute}}
 
 Drift prompts you for your PactFlow workspace URL and API token, then exchanges them for a session token cached locally for 7 days:
 
@@ -112,8 +116,6 @@ PactFlow URL: https://your-workspace.pactflow.io
 PactFlow token:
 Authenticated as Jane Smith <jane.smith@example.com>  (expires 2026-03-26 00:36:28 UTC)
 ```
-
-Obtain your API token from **Settings → API Tokens** in your PactFlow workspace.
 
 ### Authenticating with environment variables
 
@@ -130,9 +132,13 @@ Select `Copy Token Value` -> `as Environment Variables` to get the correct expor
 
 This is the recommended approach for CI/CD pipelines where interactive login is not available.
 
-Once you have set you tokens, you can verify authentication with:
+Once you have set you tokens, you can login with:
 
 👉 `drift auth login`{{execute}}
+
+and verify the status with:
+
+👉 `drift auth status`{{execute}}
 
 #### Create your First Test Suite
 
