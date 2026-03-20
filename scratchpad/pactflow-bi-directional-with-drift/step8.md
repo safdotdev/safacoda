@@ -42,7 +42,24 @@ Next steps:
 
 Your dashboard should look something like this:
 
-![pactflow-dashboard-unverified](./assets/pactflow-dashboard-unverified.png)
+![consumer-dashboard-unverified](./assets/consumer-dashboard-unverified.png)
+
+You can expand the contract to see more details, including the request and response that were captured in the contract.
+
+![consumer-dashboard-unverified-expanded](./assets/consumer-dashboard-unverified-expanded.png)
+
+If you select the "Choose a verification to continue" button, you will be taken to the Broker Matrix, where you can see the status of the verification for this contract. The consumer contract is automatically verified against the provider contract (the OpenAPI document), after it is published.
+
+![contract-verification-matrix](./assets/contract-verification-matrix.png)
+
+Clicking on the "View contract" button on your selected row, will provide detail of the
+
+- consumer contract and content
+- provider contract and content
+- provider self-verification results (comparing the provider API to the OpenAPI document with API Drift testing)
+- cross-verification results (comparing the Pact to the OpenAPI document with Bi-Directional contract testing)
+
+![cross-contract-verification-result-success](./assets/cross-contract-verification-result-success.png)
 
 ## Don't have a PactFlow account?
 
