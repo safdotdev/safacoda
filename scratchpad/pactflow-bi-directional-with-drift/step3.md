@@ -97,6 +97,43 @@ If you prefer a global install (available across shells), install from npm, plea
 
 If you don't use node, or need more options, see our [Installation Guide](https://pactflow.github.io/drift-docs/docs/how-to/install) for manual installation, verification steps, and troubleshooting.
 
+#### Authenticate Drift with PactFlow
+
+Drift authenticates with PactFlow to validate your licence and download provider configurations. This is separate from authenticating to the API you are testing.
+
+The recommended way to authenticate is with the `drift auth` command:
+
+👉 `drift auth login`{{execute}}
+
+Drift prompts you for your PactFlow workspace URL and API token, then exchanges them for a session token cached locally for 7 days:
+
+```
+PactFlow URL: https://your-workspace.pactflow.io
+PactFlow token:
+Authenticated as Jane Smith <jane.smith@example.com>  (expires 2026-03-26 00:36:28 UTC)
+```
+
+Obtain your API token from **Settings → API Tokens** in your PactFlow workspace.
+
+### Authenticating with environment variables
+
+Alternatively, set your credentials as environment variables before running `drift auth`. Drift reads these automatically to create the token:
+
+```bash
+export PACT_BROKER_BASE_URL="https://your-workspace.pactflow.io"
+export PACT_BROKER_TOKEN="your-api-token"
+```
+
+Obtain your API token from **Settings → API Tokens** in your PactFlow workspace.
+
+Select `Copy Token Value` -> `as Environment Variables` to get the correct export command for your shell, if using Linux or MacOS. For Windows, choose `Windows` for command prompt or `PowerShell` for PowerShell.
+
+This is the recommended approach for CI/CD pipelines where interactive login is not available.
+
+Once you have set you tokens, you can verify authentication with:
+
+👉 `drift auth login`{{execute}}
+
 #### Create your First Test Suite
 
 Create a file named `drift.yaml` in the `example-provider` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
