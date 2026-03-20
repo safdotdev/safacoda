@@ -85,7 +85,7 @@ These concerns belong to functional, integration, or E2E testing.
 
 Drift is available as a standalone binary, and is language agnostic. It can be used to test any API, regardless of the implementation language or framework.
 
-The simplest way to try Drift without installing anything globally is with `npx` (required node):
+The simplest way to try Drift without installing anything globally is with `npx` (requires node):
 
 `npx -y @pactflow/drift --help`{{execute}}
 
